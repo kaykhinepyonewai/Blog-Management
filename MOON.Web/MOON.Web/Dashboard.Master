@@ -1,0 +1,198 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.master.cs" Inherits="MOON.Web.Dashboard" %>
+<%
+    string[] user = (string[])Session["Users"];
+    string path = HttpContext.Current.Request.Url.AbsolutePath;
+%>
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> MOON | <%: Page.Title  %></title>
+     <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/img/Common/favicon.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Resources/css/reset.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/all.min.css" rel="stylesheet" />
+    <link href="~/Content/slick.css" rel="stylesheet" />
+    <link href="~/Content/sweetalert.min.css" rel="stylesheet" />
+    <link href="~/Resources/css/common.css" rel="stylesheet" />
+    <link href="~/Resources/css/style.css" rel="stylesheet" />
+    <link href="~/Resources/css/darticles.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <section class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-3 col-lg-3 col-xl-3 vh-100 overflow-scroll d-aside">
+        <div class="nav-close"></div>
+        <div class="sidebar-head">
+          <div class="logo-content">
+            <h1 class="hdr-logo">
+              <a href='<%= ResolveUrl("~/Views/Dashboard/Home.aspx") %>' class="logo-link">
+                  <img src="../../../img/Common/favicon.png" alt="Moon Logo">
+              </a>
+          </h1>
+          </div>
+        </div>
+        <ul class="nav-list p-0">
+             <%if (Convert.ToInt32(user[1]) == 1)
+                 { %>
+          <li class="sidebar-item <%= (path == "/Views/Dashboard/Home" || path == "/Views/Dashboard/User/UserProfile") ? "active" : "" %>">
+            <a href='<%= ResolveUrl("~/Views/Dashboard/Home.aspx") %>' class="sidebar-link">
+              <div class="link-items">
+                <i class="fa-solid fa-home"></i>
+                <span class="sidebar-link-text">Dashboard</span>
+              </div>
+            </a>
+          </li>
+              <% } %>
+          <li class="sidebar-item <%= (path == "/Views/Dashboard/Article/ArticleList" || path == "/Views/Dashboard/Article/ArticleCreate") ? "active" : "" %>">
+            <a href="<%= ResolveUrl("~/Views/Dashboard/Article/ArticleList.aspx") %>" class="sidebar-link">
+              <div class="link-items">
+                <i class="fa-regular fa-newspaper"></i>
+                <span class="sidebar-link-text">All Articles</span>
+              </div>
+            </a>
+          </li>
+          <li class="sidebar-item <%= (path == "/Views/Dashboard/Article/ArchieveList") ? "active" : "" %>">
+            <a href="<%= ResolveUrl("~/Views/Dashboard/Article/ArchieveList.aspx") %>" class="sidebar-link">
+              <div class="link-items">
+                <i class="fa-solid fa-box-archive"></i>
+                <span class="sidebar-link-text">Archieve Articles</span>
+              </div>
+            </a>
+          </li>
+             <%if (Convert.ToInt32(user[1]) == 2)
+                 { %>
+          <li class="sidebar-item <%= (path == "/Views/Dashboard/Article/WaitingList") ? "active" : "" %>">
+            <a href="<%= ResolveUrl("~/Views/Dashboard/Article/WaitingList.aspx") %>" class="sidebar-link">
+              <div class="link-items">
+               <i class="fa-solid fa-hourglass-half"></i>
+                <span class="sidebar-link-text">Waiting Lists</span>
+              </div>
+            </a>
+          </li>
+              <% } %>
+            <%if (Convert.ToInt32(user[1]) == 1)
+                { %>
+          <li class="sidebar-item  <%= (path == "/Views/Dashboard/Category/CategoryList" || path == "/Views/Dashboard/Category/CategoryCreate") ? "active" : "" %>">
+            <a href="<%= ResolveUrl("~/Views/Dashboard/Category/CategoryList.aspx") %>" class="sidebar-link">
+              <div class="link-items">
+                <i class="fa-solid fa-list-ul"></i>
+                <span class="sidebar-link-text">All Categories</span>
+              </div>
+            </a>
+          </li>
+              <% } %>
+
+          <li class="sidebar-item <%= (path == "/Views/Dashboard/Comment/CommentList") ? "active" : "" %>">
+            <a href="<%= ResolveUrl("~/Views/Dashboard/Comment/CommentList.aspx") %>" class="sidebar-link">
+              <div class="link-items">
+                <i class="fa-solid fa-comments"></i>
+                <span class="sidebar-link-text">Comments</span>
+              </div>
+            </a>
+          </li>
+
+             <%if (Convert.ToInt32(user[1]) == 1)
+                 { %>
+          <li class="sidebar-item <%= (path == "/Views/Dashboard/RequestPost/RequestPost" || path == "/Views/Dashboard/RequestPost/RequestDetail") ? "active" : "" %>">
+            <a href="<%= ResolveUrl("~/Views/Dashboard/RequestPost/RequestPost.aspx") %>" class="sidebar-link">
+              <div class="link-items">
+                    <i class="fa-solid fa-paper-plane"></i>
+                  <span class="sidebar-link-text">Request Articles</span>
+              </div>
+            </a>
+          </li>
+               <% } %>
+             <%if (Convert.ToInt32(user[1]) == 1)
+                 { %>
+          <li class="sidebar-item  <%= (path == "/Views/Dashboard/User/UserList") ? "active" : "" %>">
+            <a href="<%= ResolveUrl("~/Views/Dashboard/User/UserList.aspx") %>" class="sidebar-link">
+              <div class="link-items">
+                <i class="fa-solid fa-users"></i>
+                <span class="sidebar-link-text">All Users</span>
+              </div>
+            </a>
+          </li>
+             <% } %>
+
+              <%if (Convert.ToInt32(user[1]) == 1)
+                  { %>
+          <li class="sidebar-item <%= (path == "/Views/Dashboard/Report/ReportList" || path == "/Views/Dashboard/Report/ReportCreate") ? "active" : "" %>">
+            <a href="<%= ResolveUrl("~/Views/Dashboard/Report/ReportList.aspx") %>"" class="sidebar-link">
+              <div class="link-items">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span class="sidebar-link-text">User Reports</span>
+              </div>
+            </a>
+          </li>
+              <% } %>
+        </ul>
+      </div>
+      <div class="col-12 col-md-9 col-lg-9 col-xl-9 bg-light vh-100 overflow-scroll d-content">
+          <form runat="server" method="post">
+               <% string[] user = (string[])Session["Users"]; %>
+           <div class="row">
+          <div class="col-12">
+            <div class="px-3 py-0 my-3 rounded-3 d-flex justify-content-between align-item-center bg-white d-navbar">
+              <button class="show-btn burger-menu menu d-block d-md-none d-lg-none" aria-label="Main Menu">
+                <svg class="burger-svg" viewBox="0 0 100 100">
+                  <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+                  <path class="line line2" d="M 20,50 H 80" />
+                  <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+                </svg>
+              </button>
+              <div class="d-none d-md-flex d-lg-flex d-search-form" role="search">
+                  <asp:TextBox ID="txtSearch" ValidationGroup="search" OnTextChanged="chgSearchByText" CssClass="form-control shadow-none text-secondary d-nav-search bg-transparent border-0 me-2" PlaceHolder="Search" TextMode="Search" runat="server"></asp:TextBox>
+                  <asp:Button ID="btnSearch" CssClass="invisible" Text="Submit" runat="server" ValidationGroup="search" />
+                  <i class="fas fa-search text-secondary"></i>
+              </div>
+              <div class="dropdown">
+                <button class="btn-link text-decoration-none d-flex align-items-center btn bg-transparent d-profile-btn shadow-none text-capitalize" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="text-dark px-3">
+                    <p class="d-username mb-0" id="username" runat="server"></p>
+                    <span class="d-role"><%= (Convert.ToInt32(user[1]) == 1) ? "Admin" : "User" %></span>
+                  </div>
+                  <asp:Image ID="imgProfile" runat="server" CssClass="profile-img" alt="User photo" />
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                  <li><asp:HyperLink ID="hyprLnkProfile" CssClass="dropdown-item" runat="server">Profile</asp:HyperLink></li>
+                  <li><a class="dropdown-item" href="<%= ResolveUrl("~/Default.aspx") %>">Blogs</a></li>
+                  <li>
+                    <asp:HyperLink ID="hyprLnkPwdSetting" CssClass="dropdown-item" runat="server">Password Setting</asp:HyperLink>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li>
+                     <asp:LinkButton ID="lnkBtnLogout" OnClick="lnkBtnLogoutClick" CssClass="dropdown-item" runat="server">Logout</asp:LinkButton>
+                  </li>
+                </ul>
+              </div>
+            </div><!-- /.navbar -->
+          </div>
+        </div>
+
+            <asp:ContentPlaceHolder ID="ContentDashboardPlaceHolder" runat="server">
+
+            </asp:ContentPlaceHolder>
+          </form>
+      </div>
+    </div>
+  </section>
+ <script src='<%= ResolveUrl("~/Scripts/bootstrap.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Scripts/Library/jquery.min.js") %>'></script>
+     <script src='<%= ResolveUrl("~/Scripts/Library/jquery.heightLine.js") %>'></script>
+     <script src='<%= ResolveUrl("~/Scripts/Library/slick.min.js") %>'></script>
+     <script src='<%= ResolveUrl("~/Scripts/sweetalert.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Resources/js/common.js") %>'></script>
+</body>
+</html>

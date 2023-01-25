@@ -1,0 +1,313 @@
+﻿.breadcrumb-main {
+    margin-bottom: 25px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+.d-breadcrumb .breadcrumb {
+    padding: 18px 20px;
+}
+
+.d-breadcrumb .breadcrumb > li {
+    margin-right: 15px;
+}
+
+.create-ttl {
+    margin-bottom: 25px;
+    font-size: 23px;
+}
+
+.table-wrapper {
+    margin-top: 20px;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.table-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.table-wrapper table > tbody > tr:first-child {
+    background: #EAEAEA;
+}
+
+.table-wrapper tr th {
+    text-align: center;
+}
+
+.table-wrapper tr td {
+    font-size: 18px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+tr td img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.table-title {
+    padding-top: 8px;
+    font-weight: 500;
+}
+
+.create-form {
+    margin: 20px 0;
+    padding: 25px 20px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+.create-form form {
+    margin-top: 25px;
+}
+
+.create-form .form-group {
+    margin-bottom: 20px;
+}
+
+.article-thumbnail {
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.role-describe {
+    font-size: 12px;
+}
+
+/*Kay*/
+
+.db-detail-blk {
+    max-width: 760px;
+    width: 76%;
+    padding: 30px 0 20px;
+}
+
+.main-detail {
+    margin: 25px;
+}
+
+.thumbnail-db-detail {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    padding: 20px 0;
+    border-radius: 5px;
+}
+
+.main-detail .db-detail-pgh {
+    line-height: 1.8;
+    font-size: 18px;
+    padding-top: 20px;
+}
+
+.btn-approve, .btn-reject {
+    width: 120px;
+}
+
+.btn-approve {
+    margin-right: 20px;
+}
+
+
+/*Kay*/
+
+
+@media screen and (min-width:768px) and (max-width:1160px) {
+
+    .breadcrumb-main {
+        margin-bottom: 3.255vw;
+        box-shadow: rgba(0, 0, 0, 0.05) 0vw 0.13vw 0.26vw 0vw;
+    }
+
+    .d-breadcrumb .breadcrumb {
+        padding: 2.344vw 2.604vw;
+    }
+
+        .d-breadcrumb .breadcrumb > li {
+            margin-right: 1.953vw;
+        }
+
+    .create-ttl {
+        margin-bottom: 3.255vw;
+        font-size: 2.995vw;
+    }
+
+    .table-wrapper {
+        margin-top: 2.604vw;
+    }
+
+        .table-wrapper tr td {
+            font-size: 2.344vw;
+        }
+
+    tr td img {
+        width: 13.021vw;
+        height: 13.021vw;
+    }
+
+    .table-title {
+        padding-top: 1.042vw;
+    }
+
+    .create-form {
+        margin: 2.604vw 0;
+        padding: 3.255vw 2.604vw;
+        box-shadow: rgba(0, 0, 0, 0.05) 0vw 0.13vw 0.26vw 0vw;
+    }
+
+        .create-form form {
+            margin-top: 3.255vw;
+        }
+
+        .create-form .form-group {
+            margin-bottom: 2.604vw;
+        }
+
+    .db-detail-blk {
+        width: 76%;
+        padding: 3.906vw 0 2.604vw;
+        max-width: 98.958vw;
+    }
+
+    .article-thumbnail {
+        width: 19.531vw;
+        height: 19.531vw;
+        border-radius: 1.042vw;
+    }
+
+    .role-describe {
+        font-size: 1.563vw;
+    }
+
+    .main-detail {
+        margin: 3.255vw;
+    }
+
+    .thumbnail-db-detail {
+        height: 45.573vw;
+        padding: 2.604vw 0;
+        border-radius: 0.651vw;
+    }
+
+    .main-detail .db-detail-pgh {
+        line-height: 1.8;
+        padding-top: 2.604vw;
+        font-size: 2.344vw;
+    }
+
+    .btn-approve,
+    .btn-reject {
+        width: 15.625vw;
+    }
+
+    .btn-approve {
+        margin-right: 2.604vw;
+    }
+}
+
+@media screen and (max-width:767.9px) {
+
+    .breadcrumb-main {
+        box-shadow: rgba(0, 0, 0, 0.05) 0vw 0.156vw 0.313vw 0vw;
+        margin-bottom: 3.906vw;
+    }
+
+    .d-breadcrumb .breadcrumb {
+        padding: 2.813vw 3.125vw;
+    }
+
+    .d-breadcrumb .breadcrumb > li {
+        margin-right: 2.344vw;
+    }
+
+    .table > :not(caption) > * > * {
+        padding: 1.25vw;
+        border-bottom-width: 0.156vw;
+    }
+
+    .create-ttl {
+        margin-bottom: 3.906vw;
+        font-size: 3.594vw;
+    }
+
+    .table-wrapper {
+        margin-top: 3.125vw;
+    }
+
+    .table-wrapper tr td {
+        font-size: 2.813vw;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    tr td img {
+        width: 15.625vw;
+        height: 15.625vw;
+    }
+
+    tr td {
+        font-size: 2.813vw;
+    }
+
+    .table-title {
+        padding-top: 1.25vw;
+        font-weight: 500;
+    }
+
+    .create-form {
+        padding: 3.906vw 3.125vw;
+        margin: 3.125vw 0;
+        box-shadow: rgba(0, 0, 0, 0.05) 0vw 0.156vw 0.313vw 0vw;
+    }
+
+    .create-form form {
+        margin-top: 3.906vw;
+    }
+
+    .create-form .form-group {
+        margin-bottom: 3.125vw;
+    }
+
+    .db-detail-blk {
+        max-width: 118.75vw;
+        width: 87%;
+        padding: 4.688vw 0 3.125vw;
+    }
+
+    .article-thumbnail {
+        width: 23.438vw;
+        height: 23.438vw;
+        border-radius: 1.25vw;
+    }
+
+    .role-describe {
+        font-size: 1.875vw;
+    }
+
+    .main-detail {
+        margin: 3.906vw;
+    }
+
+    .thumbnail-db-detail {
+        height: 54.688vw;
+        padding: 3.125vw 0;
+        border-radius: 0.781vw;
+    }
+
+    .main-detail .db-detail-pgh {
+        line-height: 1.8;
+        font-size: 2.813vw;
+        padding-top: 3.125vw;
+    }
+
+    .btn-approve, .btn-reject {
+        width: 18.75vw;
+    }
+
+    .btn-approve {
+        margin-right: 3.125vw;
+    }
+}

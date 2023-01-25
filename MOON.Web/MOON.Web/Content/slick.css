@@ -1,0 +1,253 @@
+﻿/* Slider */
+.slick-slider {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+    .slick-list:focus {
+        outline: none;
+    }
+
+    .slick-list.dragging {
+        cursor: pointer;
+        cursor: hand;
+    }
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+    .slick-track:before,
+    .slick-track:after {
+        display: table;
+        content: '';
+    }
+
+    .slick-track:after {
+        clear: both;
+    }
+
+.slick-loading .slick-track {
+    visibility: hidden;
+}
+
+.slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+
+[dir='rtl'] .slick-slide {
+    float: right;
+}
+
+.slick-slide img {
+    display: block;
+}
+
+.slick-slide.slick-loading img {
+    display: none;
+}
+
+.slick-slide.dragging img {
+    pointer-events: none;
+}
+
+.slick-initialized .slick-slide {
+    display: block;
+}
+
+.slick-loading .slick-slide {
+    visibility: hidden;
+}
+
+.slick-vertical .slick-slide {
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+}
+
+.slick-arrow.slick-hidden {
+    display: none;
+}
+
+/*slick arrows
+----------------------------------------*/
+.slick-prev,
+.slick-next {
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: transparent;
+    font-size: 0;
+    outline: none;
+    cursor: pointer;
+    transform: translate(0, -50%);
+    transition: all 0.4s linear;
+}
+
+.slick-next {
+    right: 20px;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.363);
+    backdrop-filter: blur(30px);
+}
+
+.slick-prev {
+    left: 20px;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.363);
+    backdrop-filter: blur(30px);
+}
+
+.slick-arrow:hover {
+    opacity: 0.7;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 40px;
+    content: "";
+    transform: translate(-50%,-50%);
+}
+
+.slick-prev::before {
+    background: url("../../img/common/ico_left_arrow.svg") no-repeat center/cover;
+    width: 20px;
+    height: 20px;
+}
+
+.slick-next:before {
+    background: url("../../img/common/ico_right_arrow.svg") no-repeat center/cover;
+    width: 20px;
+    height: 20px;
+}
+
+@media screen and (min-width:768px) and (max-width:1160px) {
+    /*slick arrows
+----------------------------------------*/
+    .slick-prev,
+    .slick-next {
+        width: 2.604vw;
+        height: 5.208vw;
+    }
+
+    .slick-next {
+        right: 2.604vw;
+        width: 6.51vw;
+        height: 6.51vw;
+        backdrop-filter: blur(3.906vw);
+    }
+
+    .slick-prev {
+        left: 2.604vw;
+        width: 6.51vw;
+        height: 6.51vw;
+        background: rgba(255, 255, 255, 0.363);
+        backdrop-filter: blur(3.906vw);
+    }
+
+        .slick-prev:before,
+        .slick-next:before {
+            width: 2.604vw;
+            height: 5.208vw;
+        }
+
+        .slick-prev::before {
+            width: 2.604vw;
+            height: 2.604vw;
+        }
+
+    .slick-next:before {
+        width: 2.604vw;
+        height: 2.604vw;
+    }
+}
+
+@media screen and (max-width:767.9px) {
+    /*slick arrows
+----------------------------------------*/
+    .slick-prev,
+    .slick-next {
+        width: 3.125vw;
+        height: 6.25vw;
+    }
+
+    .slick-next {
+        right: 3.125vw;
+        width: 7.813vw;
+        height: 7.813vw;
+        backdrop-filter: blur(4.688vw);
+    }
+
+    .slick-prev {
+        left: 3.125vw;
+        width: 7.813vw;
+        height: 7.813vw;
+        backdrop-filter: blur(4.688vw);
+    }
+
+        .slick-prev:before,
+        .slick-next:before {
+            width: 3.125vw;
+            height: 6.25vw;
+        }
+
+        .slick-prev::before {
+            width: 3.125vw;
+            height: 3.125vw;
+        }
+
+    .slick-next:before {
+        width: 3.125vw;
+        height: 3.125vw;
+    }
+}

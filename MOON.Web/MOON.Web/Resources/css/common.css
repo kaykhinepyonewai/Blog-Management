@@ -1,0 +1,329 @@
+﻿/*Common
+------------------------------------*/
+.divider {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 16px 0;
+    background: #7d7d7d;
+}
+
+.profile-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/*Frontend
+------------------------------------*/
+
+.nav-blk {
+    position: sticky;
+    top: -1px;
+    z-index: 4000;
+    width: 100%;
+}
+
+.navbar-brand {
+    font-size: 25px;
+}
+
+.nav-search-wrapper {
+    position: relative;
+}
+
+    .nav-search-wrapper i {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        font-size: 13px;
+        transform: translate(-50%, -50%);
+    }
+
+    .nav-search-wrapper input {
+        padding-right: 37px;
+    }
+
+.nav-dropdown .user-item {
+    padding-left: 10px;
+}
+
+.nav-dropdown .username {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.burger-btn {
+    width: 40px;
+    height: 40px;
+}
+
+
+/* Footer
+------------------------------------*/
+
+.footer-logo-blk {
+    position: relative;
+}
+
+    .footer-logo-blk img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .footer-logo-blk::after {
+        position: absolute;
+        top: 50%;
+        left: 175%;
+        width: 100%;
+        font-size: 28px;
+        content: "MOON";
+        transform: translate(-50%, -50%);
+    }
+
+.main-footer {
+    margin-top: 20px;
+    padding: 38px 0;
+}
+
+.moon-info {
+    font-size: 13px;
+}
+
+.content p {
+    font-size: 20px;
+}
+
+.list-group .content-link {
+    list-style: none;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    transition: all 0.3s linear;
+}
+
+    .list-group .content-link:hover {
+        color: #002341;
+    }
+
+.list-group li:hover.content-link {
+    color: #000000;
+}
+
+/* Pagination
+------------------------------------*/
+.pagination-bar > td > table {
+    margin: 0 auto;
+}
+
+.pagination-bar table tbody tr {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+}
+
+.pagination-bar a,
+.pagination-bar span {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #383838;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.pagination-bar a {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #383838;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    transition: all 0.3s linear;
+    text-decoration: none;
+}
+
+.pagination-bar a:hover {
+    background: #EAEAEA;
+}
+
+.pagination-bar span {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #000000;
+    background: #EAEAEA;
+    border: 1px solid #dee2e6;
+}
+
+
+    @media screen and (min-width:768px) and (max-width:1160px) {
+        .divider {
+        height: 0.13vw;
+        margin: 2.083vw 0;
+    }
+
+    .profile-img {
+        width: 5.859vw;
+        height: 5.859vw;
+    }
+
+    /*Frontend
+------------------------------------*/
+    .navbar-brand {
+        font-size: 3.255vw;
+    }
+
+    .nav-search-wrapper i {
+        right: 1.302vw;
+        font-size: 1.693vw;
+    }
+
+    .nav-search-wrapper input {
+        margin: 1.953vw 0;
+        padding-right: 5.859vw;
+    }
+
+    .nav-dropdown .username {
+        font-size: 1.823vw;
+    }
+
+    .burger-btn {
+        width: 5.208vw;
+        height: 5.208vw;
+    }
+
+    /*Footer
+------------------------------------*/
+
+    .footer-logo-blk::after {
+        font-size: 2.604vw;
+    }
+
+    .main-footer {
+        padding: 4.948vw 0;
+    }
+
+    .moon-info {
+        font-size: 1.693vw;
+    }
+
+    .content p {
+        font-size: 3.125vw;
+    }
+
+    .list-group .content-link {
+        font-size: 2.083vw;
+    }
+
+    .footer-logo-blk img {
+        width: 5.859vw;
+        height: 5.859vw;
+    }
+
+
+    /* Pagination
+------------------------------------*/
+
+    .pagination {
+        margin: 0;
+    }
+
+        .pagination .page-item .page-link {
+            width: 2.604vw;
+            height: 2.604vw;
+            padding: 3.255vw;
+            font-size: 1.823vw;
+            border-radius: 1.302vw;
+        }
+}
+
+@media screen and (max-width:767.9px) {
+
+    .divider {
+        height: 0.156vw;
+        margin: 2.5vw 0;
+    }
+
+    .profile-img {
+        width: 7.031vw;
+        height: 7.031vw;
+    }
+
+    /* Frontend
+------------------------------------*/
+    .navbar-brand {
+        font-size: 3.906vw;
+    }
+
+    .nav-search-wrapper input {
+        margin: 2.344vw 0;
+        font-size: 2.188vw;
+    }
+
+        .nav-search-wrapper input::placeholder {
+            font-size: 2.188vw;
+        }
+
+    .nav-search-wrapper i {
+        right: 2.344vw;
+        font-size: 2.031vw;
+    }
+
+    .nav-dropdown .username {
+        font-size: 2.188vw;
+        font-weight: 500;
+    }
+
+    .burger-btn {
+        width: 6.25vw;
+        height: 6.25vw;
+    }
+
+    /*Footer
+------------------------------------*/
+
+    .main-footer {
+        margin-top: 3.125vw;
+        padding: 5.938vw 0;
+    }
+
+    .footer-logo-blk img {
+        width: 7.031vw;
+        height: 7.031vw;
+    }
+
+    .footer-logo-blk::after {
+        font-size: 4.375vw;
+    }
+
+    .moon-info {
+        font-size: 2.5vw;
+    }
+
+    .content p {
+        font-size: 3.906vw;
+    }
+
+    .list-group .content-link {
+        font-size: 2.5vw;
+    }
+
+    /* Pagination
+------------------------------------*/
+
+    .pagination .page-item .page-link {
+        width: 3.125vw;
+        height: 3.125vw;
+        padding: 3.906vw;
+        font-size: 2.188vw;
+        border-radius: 1.563vw;
+    }
+}
