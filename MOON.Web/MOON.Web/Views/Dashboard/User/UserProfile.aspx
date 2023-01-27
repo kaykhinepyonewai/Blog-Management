@@ -28,31 +28,31 @@
             <div class="card create-form border-0">
                 <div class="row">
                     <div class="form-group col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="<%= txtUsername.ClientID %>">Username</label>
+                        <label class="form-label" for="<%= txtUsername.ClientID %>">Username <span class="text-danger">*</span></label>
                         <asp:Label ID="lblCheckUserName" CssClass="form-label" runat="server" ForeColor="Red" Text=""></asp:Label>
                         <asp:TextBox ID="txtUsername" ValidationGroup="create" CssClass="form-control" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ValidationGroup="create" ID="RequiredFieldValidatorUsername" ControlToValidate="txtUsername" runat="server" ForeColor="Red" ErrorMessage="Username field is required."></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="<%= txtEmail.ClientID %>">Email</label>
+                        <label class="form-label" for="<%= txtEmail.ClientID %>">Email <span class="text-danger">*</span></label>
                         <asp:Label ID="lblCheckEmail" CssClass="form-label" runat="server" ForeColor="Red" Text=""></asp:Label>
                         <asp:TextBox ValidationGroup="control" CssClass="form-control" ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox>
                         <asp:RequiredFieldValidator ValidationGroup="create" ID="RequiredFieldValidatorForEmail" ControlToValidate="txtEmail" runat="server" ForeColor="Red" ErrorMessage="Email field is required."></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="<%= txtFirstName.ClientID %>">First Name</label>
+                        <label class="form-label" for="<%= txtFirstName.ClientID %>">First Name <span class="text-danger">*</span></label>
                         <asp:Label ID="lblCheckFirstName" CssClass="form-label" runat="server" ForeColor="Red" Text=""></asp:Label>
                         <asp:TextBox ID="txtFirstName" ValidationGroup="create" CssClass="form-control" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ValidationGroup="create" ID="RequiredFieldValidatorFirstName" ControlToValidate="txtFirstName" runat="server" ForeColor="Red" ErrorMessage="First Name field is required."></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="<%= txtLastName.ClientID %>">Last Name</label>
+                        <label class="form-label" for="<%= txtLastName.ClientID %>">Last Name <span class="text-danger">*</span></label>
                         <asp:Label ID="lblCheckLastName" CssClass="form-label" runat="server" ForeColor="Red" Text=""></asp:Label>
                         <asp:TextBox ID="txtLastName" ValidationGroup="create" CssClass="form-control" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ValidationGroup="create" ID="RequiredFieldValidatorLastName" ControlToValidate="txtLastName" runat="server" ForeColor="Red" ErrorMessage="Last Name field is required."></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="<%= txtMobile.ClientID %>">Mobile</label>
+                        <label class="form-label" for="<%= txtMobile.ClientID %>">Mobile <span class="text-danger">*</span></label>
                         <asp:Label ID="lblCheckMobile" CssClass="form-label" runat="server" ForeColor="Red" Text=""></asp:Label>
                         <asp:TextBox ValidationGroup="create" CssClass="form-control" ID="txtMobile" runat="server" TextMode="Phone"></asp:TextBox>
                         <asp:RequiredFieldValidator ValidationGroup="create" ID="RequiredFieldValidatorMobile" ControlToValidate="txtMobile" runat="server" ForeColor="Red" ErrorMessage="Mobile field is required."></asp:RequiredFieldValidator>
@@ -60,13 +60,13 @@
                         <asp:RegularExpressionValidator ID="RegexForMobile" runat="server" ForeColor="Red" ErrorMessage="The PhoneNumber field is not a valid phone number." ValidationGroup="control" ControlToValidate="txtMobile" ValidationExpression="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"></asp:RegularExpressionValidator>
                     </div>
                     <div class="form-group col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="<%= txtAddress.ClientID %>">Address</label>
+                        <label class="form-label" for="<%= txtAddress.ClientID %>">Address <span class="text-danger">*</span></label>
                         <asp:Label ID="lblCheckAddress" CssClass="form-label" runat="server" ForeColor="Red" Text=""></asp:Label>
                         <asp:TextBox ValidationGroup="create" CssClass="form-control" ID="txtAddress" runat="server" TextMode="MultiLine"></asp:TextBox>
                         <asp:RequiredFieldValidator ValidationGroup="create" ID="RequiredFieldValidatorAddress" ControlToValidate="txtAddress" runat="server" ForeColor="Red" ErrorMessage="Address field is required."></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="<%= ddlGender.ClientID %>">Gender</label>
+                        <label class="form-label" for="<%= ddlGender.ClientID %>">Gender <span class="text-danger">*</span></label>
                         <asp:DropDownList ID="ddlGender" ValidationGroup="create" CssClass="form-select" runat="server">
                             <asp:ListItem Value="None">Select your gender.</asp:ListItem>
                             <asp:ListItem Value="Male">Male</asp:ListItem>

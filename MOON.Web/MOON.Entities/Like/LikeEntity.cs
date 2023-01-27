@@ -39,7 +39,6 @@ namespace MOON.Entities.Like
             this.ArticleId = 0;
             this.Thumbnail = string.Empty;
             this.Title = string.Empty;
-            this.Title = string.Empty;
             this.Slug = string.Empty;
             this.Excerpt = string.Empty;
             this.Username = string.Empty;

@@ -36,6 +36,12 @@ namespace MOON.DAO.Dashboard
             return connection.GetAllImage(CommandType.Text, strSql);
         }
 
+        public List<PhotoEntity> GetAllImages(int id)
+        {
+
+            strSql = "select * from Photos where ArticleId=" + id;
+            return connection.GetAllImage(CommandType.Text, strSql);
+        }
 
         public List<PhotoEntity> GetImageBySlug(string slug)
         {
@@ -113,6 +119,19 @@ namespace MOON.DAO.Dashboard
         public bool ReportPhotosRemove(int id)
         {
             strSql = "DELETE FROM Photos WHERE DeleteStatus = 0 AND ArticleId=@ArticleId";
+
+            SqlParameter[] sqlPara =
+            {
+                new SqlParameter("@ArticleId",id)
+            };
+
+            bool success = connection.ExecuteNonQuery(CommandType.Text, strSql, sqlPara);
+            return success;
+        }
+
+        public bool ReportAllPhotosRemove(int id)
+        {
+            strSql = "DELETE FROM Photos WHERE ArticleId=@ArticleId";
 
             SqlParameter[] sqlPara =
             {

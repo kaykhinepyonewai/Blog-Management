@@ -51,15 +51,15 @@ namespace MOON.Web.Views.Dashboard.Report
         /// <summary>
         ///Once you delete a report, it will also delete the associated article at the same time.
         /// </summary>
-        protected void gvReportRowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gvRowDeleteing(object sender, EventArgs e)
         {
-            Label getId = (Label)gvReports.Rows[e.RowIndex].FindControl("lblArticleID");
+            int id = Convert.ToInt32(hdnValueId.Value.ToString());
             ArticleService articleService = new ArticleService();
             PhotoService photoService = new PhotoService();
             CommentService commentService = new CommentService();
             LikeService likeService = new LikeService();
 
-            DataTable dt = articleService.GetSpecificArchieve(Convert.ToInt32(getId.Text.ToString()));
+            DataTable dt = articleService.GetSpecificArchieve(id);
             string thumbnail = dt.Rows[0]["Thumbnail"].ToString();
             string checkpath = Server.MapPath(thumbnail);
             string filepath = Path.GetFullPath(checkpath);
@@ -75,7 +75,7 @@ namespace MOON.Web.Views.Dashboard.Report
                 }
             }
 
-            List<PhotoEntity> photos = photoService.GetAllImage(Convert.ToInt32(getId.Text.ToString()));
+            List<PhotoEntity> photos = photoService.GetAllImage(id);
             if (photos.Count > 0)
             {
                 foreach (var photo in photos)
@@ -96,10 +96,10 @@ namespace MOON.Web.Views.Dashboard.Report
                     }
                 }
             }
-            bool commentsuccess = commentService.DeleteSpecificArticle(Convert.ToInt32(getId.Text.ToString()));
-            bool likesuccess = likeService.DeleteSpecificArticle(Convert.ToInt32(getId.Text.ToString()));
-            bool photosuccess = photoService.ReportPhotosRemove(Convert.ToInt32(getId.Text.ToString()));
-            bool success = articleService.ReportRemove(Convert.ToInt32(getId.Text.ToString()));
+            bool commentsuccess = commentService.DeleteSpecificArticle(id);
+            bool likesuccess = likeService.DeleteSpecificArticle(id);
+            bool photosuccess = photoService.ReportPhotosRemove(id);
+            bool success = articleService.ReportRemove(id);
             if (commentsuccess || likesuccess || photosuccess || success)
             {
                 BindGrid();

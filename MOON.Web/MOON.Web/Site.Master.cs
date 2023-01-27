@@ -11,7 +11,7 @@ namespace MOON.Web
         {
             if (!IsPostBack)
             {
-                if(Session.Count != 0)
+                if(Session["Users"] != null)
                 {
                     LoadedInfo();
                 }
@@ -20,12 +20,21 @@ namespace MOON.Web
 
         private void LoadedInfo()
         {
-            string[] user = (string[])Session["Users"];
-            UserService userService = new UserService();
-            DataTable dt = userService.GetId(Convert.ToInt32(user[0]));
-            imgProfile.ImageUrl = dt.Rows[0]["Profile"].ToString();
-            username.InnerText = dt.Rows[0]["Username"].ToString();
-            hyprLnkProfile.NavigateUrl = "~/Views/Dashboard/User/UserProfile.aspx?username=" + dt.Rows[0]["Username"].ToString();
+            if (Session["Users"] != null)
+            {
+                    string[] user = (string[])Session["Users"];
+                    UserService userService = new UserService();
+                try
+                {
+                    DataTable dt = userService.GetId(Convert.ToInt32(user[0]));
+                    imgProfile.ImageUrl = dt.Rows[0]["Profile"].ToString();
+                    username.InnerText = dt.Rows[0]["Username"].ToString();
+                    hyprLnkProfile.NavigateUrl = "~/Views/Dashboard/User/UserProfile.aspx?email=" + dt.Rows[0]["Email"].ToString();
+                }catch(Exception ex)
+                {
+                    string message = ex.Message;
+                }
+            }
         }
 
         protected void lnkBtnLogoutClick(object sender, EventArgs e)

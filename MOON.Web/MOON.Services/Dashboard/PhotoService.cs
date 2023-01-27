@@ -19,6 +19,13 @@ namespace MOON.Services.Dashboard
             return cc;
         }
 
+        public List<PhotoEntity> GetAllImages(int id)
+        {
+            List<PhotoEntity> cc = photoDao.GetAllImages(id);
+            return cc;
+        }
+
+
 
         public List<PhotoEntity> GetImageBySlug(string slug)
         {
@@ -57,6 +64,11 @@ namespace MOON.Services.Dashboard
         public bool ReportPhotosRemove(int id)
         {
             return photoDao.ReportPhotosRemove(id);
+        }
+
+        public bool ReportAllPhotosRemove(int id)
+        {
+            return photoDao.ReportAllPhotosRemove(id);
         }
 
         public bool DeleteAritcle(int id)

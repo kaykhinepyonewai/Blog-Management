@@ -159,6 +159,23 @@ namespace MOON.Services.Dashboard
             return dt;
         }
 
+        public DataTable GetArticleByCategory(int id)
+        {
+            DataTable dt = articleDao.GetArticleByCategory(id);
+            return dt;
+        }
+
+        public DataTable GetArticleByUser(int id)
+        {
+            DataTable dt = articleDao.GetArticleByUser(id);
+            return dt;
+        }
+
+        public DataTable GetArticleByReport(int id)
+        {
+            DataTable dt = articleDao.GetArticleByReport(id);
+            return dt;
+        }
 
         public DataTable UserGetAll(int user)
         {
@@ -195,7 +212,11 @@ namespace MOON.Services.Dashboard
             DataTable dt = articleDao.GetAllPendingBySearch(keyword);
             return dt;
         }
-
+        public DataTable GetAllArchives()
+        {
+            DataTable dt = articleDao.GetAllArchives();
+            return dt;
+        }
         public DataTable GetArchieve(int id)
         {
             DataTable dt = articleDao.GetArchieve(id);
@@ -205,6 +226,12 @@ namespace MOON.Services.Dashboard
         public DataTable GetArchieveBySearch(int id,string keyword)
         {
             DataTable dt = articleDao.GetArchieveBySearch(id, keyword);
+            return dt;
+        }
+
+        public DataTable GetAllArchivesBySearch(string keyword)
+        {
+            DataTable dt = articleDao.GetAllArchivesBySearch(keyword);
             return dt;
         }
 
@@ -259,6 +286,11 @@ namespace MOON.Services.Dashboard
         public bool ReportRemove(int id)
         {
             return articleDao.ReportRemove(id);
+        }
+
+        public bool RemoveAllArticles(int id)
+        {
+            return articleDao.RemoveAllArticles(id);
         }
 
         public bool UnArchieve(int id)

@@ -34,16 +34,9 @@ namespace MOON.Web
             string confirmpassword = txtConfirmPassword.Text.ToString();
             UserService userService = new UserService();
             UserEntity userEntity = CreateData();
-            int exist = userService.Exist(userEntity);
             DataTable checkemail = userService.GetSpecific(email, "Email");
             var formatemail = ValidateEmail(email);
 
-            if (exist > 0)
-            {
-                lblCheckUserName.Text = "Username is already taken.";
-            }
-            else
-            {
                 if (checkemail.Rows.Count > 0)
                 {
                     lblCheckEmail.Text = "Email is already taken.";
@@ -75,7 +68,7 @@ namespace MOON.Web
                     }
                 }
             }
-        }
+        
 
         /// <summary>
         /// To Check an email is a valid email address or not.

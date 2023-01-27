@@ -96,6 +96,24 @@ namespace MOON.Web.Views.Dashboard
         protected global::System.Web.UI.WebControls.RequiredFieldValidator revSlugName;
 
         /// <summary>
+        /// txtExcerpt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtExcerpt;
+
+        /// <summary>
+        /// revExcerpt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator revExcerpt;
+
+        /// <summary>
         /// txtDescription control.
         /// </summary>
         /// <remarks>

@@ -22,14 +22,14 @@
                 <h3 class="create-ttl">Create Category</h3>
                 <div class="form-group" runat="server">
                     <asp:HiddenField ID="hdCategoryId" runat="server" Value="0" />
-                    <label class="form-label" for="<%= txtTitle.ClientID %>">Category Name</label>
+                    <label class="form-label" for="<%= txtTitle.ClientID %>">Category Name <span class="text-danger">*</span></label>
                     <asp:TextBox ID="txtTitle" class="form-control" runat="server"></asp:TextBox>
                     <asp:Label ID="lblTitle" runat="server" Text="" Visible="false" Value="" ForeColor="Red"></asp:Label>
                     <asp:RequiredFieldValidator ID="revTitle" runat="server" ValidationGroup="validGp" ControlToValidate="txtTitle" ErrorMessage="Category name field is required." ForeColor="#FF3300"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="<%= txtSlug.ClientID %>">Slug</label>
+                    <label class="form-label" for="<%= txtSlug.ClientID %>">Slug <span class="text-danger">*</span></label>
                     <asp:TextBox ID="txtSlug" class="form-control" runat="server"></asp:TextBox>
                     <asp:Label ID="lblSlug" runat="server" Text="" Visible="false" Value="" ForeColor="Red"></asp:Label>
                     <asp:RequiredFieldValidator ID="revSlugName" runat="server" ValidationGroup="validGp" ControlToValidate="txtSlug" ErrorMessage="Category slug field is required" ForeColor="#FF3300"></asp:RequiredFieldValidator>

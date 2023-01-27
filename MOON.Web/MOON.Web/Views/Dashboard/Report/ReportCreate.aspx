@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <asp:HiddenField ID="hdReportId" runat="server" Value="0" />
                     <div class="m-2">
-                        <label for="<%= txtRpMessage.ClientID %>" class="form-label">Report Title</label>
+                        <label for="<%= txtRpMessage.ClientID %>" class="form-label">Report Title <span class="text-danger">*</span></label>
                         <asp:TextBox ID="txtRpMessage" runat="server" Rows="30" CssClass="form-control"></asp:TextBox>
                         <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red" Text=""></asp:Label>
                         <asp:RequiredFieldValidator ID="validatorRpMessage" runat="server" ErrorMessage="Report input field is required!" ControlToValidate="txtRpMessage" ForeColor="Red" ValidationGroup="control"></asp:RequiredFieldValidator>
@@ -42,7 +42,8 @@
             <div class="card w-100 border-0">
                 <div class="card-body">
                     <div class="table-wrapper overflow-scroll">
-                         <asp:GridView ID="gvReports" runat="server" CssClass="table table-bordered mt-3" AutoGenerateColumns="false"  OnRowDeleting="gvReportRowDeleting" OnRowCommand="gvReportsRowEditing" AllowPaging="true"
+                        <asp:HiddenField ID="hdnValueId" Value="" runat="server" />
+                         <asp:GridView ID="gvReports" runat="server" CssClass="table table-bordered mt-3" AutoGenerateColumns="false"  OnRowCommand="gvReportsRowEditing" AllowPaging="true"
                             OnPageIndexChanging="OnPageIndexChanging" PageSize="5">
                             <Columns>
                                 <asp:TemplateField HeaderText="No">
@@ -62,7 +63,8 @@
                                             <asp:LinkButton ID="lnkBtnEdit" runat="server" CssClass="btn btn-primary btn-sm" CommandName="Edit" CommandArgument='<%# Eval("ReportId") %>'>
                                                  Edit
                                             </asp:LinkButton>
-                                            <asp:Button ID="btnDelete" UseSubmitBehavior="false" CssClass="btn btn-danger btn-sm" CommandName="Delete" OnClientClick="return delHandle(this)" runat="server" Text="Delete" />
+                                           <asp:Button ID="btnDeleteHandler" CssClass="btn  btn-outline-danger d-none" runat="server" OnClick="gvRowDeleteing" Text="Delete" />
+                                        <asp:Button ID="btnDelete" UseSubmitBehavior="false" CssClass="btn btn-danger btn-sm" CommandName="Delete" OnClientClick='<%# "return delHandle("+ Eval("ReportId") + ");" %>'  runat="server" Text="Delete" />
                                         </div>
                                     </ItemTemplate>
                                 </asp:TemplateField>

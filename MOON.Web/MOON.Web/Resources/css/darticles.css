@@ -16,14 +16,16 @@
     font-size: 23px;
 }
 
-.table-wrapper {
+.table-wrapper,
+.table-img-wrapper {
     margin-top: 20px;
     overflow: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-.table-wrapper::-webkit-scrollbar {
+.table-wrapper::-webkit-scrollbar,
+.table-img-wrapper::-webkit-scrollbar {
     display: none;
 }
 
@@ -31,11 +33,19 @@
     background: #EAEAEA;
 }
 
-.table-wrapper tr th {
+.table-wrapper tr th,
+.table-img-wrapper tr th{
     text-align: center;
 }
 
 .table-wrapper tr td {
+    font-size: 18px;
+    vertical-align: middle;
+    text-align: center;
+    width: 5%
+}
+
+.table-img-wrapper tr td {
     font-size: 18px;
     vertical-align: middle;
     text-align: center;
@@ -126,22 +136,24 @@ tr td img {
         padding: 2.344vw 2.604vw;
     }
 
-        .d-breadcrumb .breadcrumb > li {
-            margin-right: 1.953vw;
-        }
+    .d-breadcrumb .breadcrumb > li {
+        margin-right: 1.953vw;
+    }
 
     .create-ttl {
         margin-bottom: 3.255vw;
         font-size: 2.995vw;
     }
 
-    .table-wrapper {
+    .table-wrapper,
+    .table-img-wrapper {
         margin-top: 2.604vw;
     }
 
-        .table-wrapper tr td {
-            font-size: 2.344vw;
-        }
+    .table-wrapper tr td,
+    .table-img-wrapper tr td{
+        font-size: 2.344vw;
+    }
 
     tr td img {
         width: 13.021vw;
@@ -158,13 +170,13 @@ tr td img {
         box-shadow: rgba(0, 0, 0, 0.05) 0vw 0.13vw 0.26vw 0vw;
     }
 
-        .create-form form {
-            margin-top: 3.255vw;
-        }
+    .create-form form {
+        margin-top: 3.255vw;
+    }
 
-        .create-form .form-group {
-            margin-bottom: 2.604vw;
-        }
+    .create-form .form-group {
+        margin-bottom: 2.604vw;
+    }
 
     .db-detail-blk {
         width: 76%;
@@ -233,11 +245,13 @@ tr td img {
         font-size: 3.594vw;
     }
 
-    .table-wrapper {
+    .table-wrapper,
+    .table-img-wrapper {
         margin-top: 3.125vw;
     }
 
-    .table-wrapper tr td {
+    .table-wrapper tr td,
+    .table-img-wrapper tr td{
         font-size: 2.813vw;
         vertical-align: middle;
         text-align: center;

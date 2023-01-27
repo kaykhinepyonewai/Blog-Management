@@ -97,6 +97,10 @@
             }
         })
 
+        $('[id*=txtDescription]').summernote({
+            tabsize: 2,
+            height: 100
+        });
     } catch (e) {
         console.warn(e.message);
     }
@@ -164,7 +168,7 @@ $("#txtMainSearch").on("change", function (e) {
     console.log(e);
 })
 
-window.delHandle = function (e) {
+window.delHandle = function (x,y=null) {
     swal({
         title: "Are you sure?",
         text: "Once deleted, you will not be able to recover this data!",
@@ -177,16 +181,18 @@ window.delHandle = function (e) {
                 swal("Poof! Your data has been deleted!", {
                     icon: "success",
                 });
-                e.type = "submit";
+                $("[id*=hdnValueId]").val(x);
+                $("[id*=hdnArticleId]").val(y);
                 setTimeout(() => {
-                    e.click();
-                }, 800)
-                    ;
+                    $("[id*=btnDeleteHandler]").click();
+                }, 800);
             } else {
                 swal("Your data is safe!");
             }
         });
 }
+
+
 
 window.btnReject = function (e) {
     swal({
@@ -204,7 +210,7 @@ window.btnReject = function (e) {
                 $("[id*=btnRejectHandler]").click();
                 setTimeout(() => {
                     Toast();
-                }, 1800)
+                }, 2100)
             } else {
                 swal("Your data is safe!");
             }

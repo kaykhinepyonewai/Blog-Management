@@ -52,7 +52,7 @@
                                         </div>
                                         <ul class="navbar-nav mb-2 mb-lg-0">
                                             <li class="nav-item dropdown nav-dropdown">
-                                                <% if (Session.Count == 0)
+                                                <% if (Session["Users"] == null)
                                                     {  %>
                                                 <a class="nav-link d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     <img src="~/img/Dashboard/Profile/Guest.png" runat="server" alt="User photo" class="profile-img">
@@ -71,7 +71,7 @@
                                                 </a>
                                                 <% } %>
                                                 <ul class="dropdown-menu">
-                                                    <% if (Session.Count == 0)
+                                                    <% if (Session["Users"] == null)
                                                         {  %>
                                                     <li><a class="dropdown-item" href="<%= ResolveUrl("~/Register.aspx") %>">Register</a></li>
                                                     <li><a class="dropdown-item" href="<%= ResolveUrl("~/Login.aspx") %>">Login</a></li>

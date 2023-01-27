@@ -183,7 +183,5 @@ namespace MOON.Web.Views.Dashboard.RequestPost
 
             return articleEntity;
         }
-
-
     }
 }

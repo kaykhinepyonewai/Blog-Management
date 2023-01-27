@@ -11,16 +11,16 @@ namespace MOON.Web.Views.Dashboard.User
         {
             if (!IsPostBack)
             {
-                if (Session.Count != 0)
+                if (Session.Count != 0 && Session["Users"] != null)
                 {
                     UserService userService = new UserService();
                     string[] user = (string[])Session["Users"];
                     DataTable dt = userService.GetId(Convert.ToInt32(user[0]));
 
-                    if (Request.QueryString["username"] != null && Request.QueryString["username"].ToString() == dt.Rows[0]["username"].ToString()
+                    if (Request.QueryString["email"] != null && Request.QueryString["email"].ToString() == dt.Rows[0]["Email"].ToString()
                         && Convert.ToInt32(dt.Rows[0]["RoleId"]) != 3 || Convert.ToInt32(dt.Rows[0]["RoleId"]) == 1)
                     {
-                        hdnUsername.Value = Request.QueryString["username"].ToString();
+                        hdnUsername.Value = dt.Rows[0]["Username"].ToString();
                         txtEmail.Text = dt.Rows[0]["email"].ToString();
                     }
                     else

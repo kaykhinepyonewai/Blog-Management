@@ -33,6 +33,16 @@ namespace MOON.Services.Comment
             return commentDao.GetComments(id);
         }
 
+        public DataTable GetAllComments()
+        {
+            return commentDao.GetAllComments();
+        }
+
+        public DataTable GetAllCommentsBySearch(string keyword)
+        {
+            return commentDao.GetAllCommentsBySearch(keyword);
+        }
+
         public DataTable GetCommentsBySearch(int id, string keyword)
         {
             return commentDao.GetCommentsBySearch(id, keyword);

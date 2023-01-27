@@ -18,10 +18,11 @@ namespace MOON.Web.Views.Dashboard
         {
             if (!IsPostBack)
             {
-                if(Session.Count != 0)
+                if(Session.Count != 0 && Session["Users"] != null)
                 {
                     if (Request.QueryString["id"] != null)
                     {
+                        
                         UserService userService = new UserService();
                         ArticleService articleService = new ArticleService();
                         string[] user = (string[])Session["Users"];
@@ -42,6 +43,7 @@ namespace MOON.Web.Views.Dashboard
                                     hdArticleId.Value = Request.QueryString["id"].ToString();
                                     BindData();
                                     GTImage();
+                                    imgBox.Visible = true;
                                     btnSave.Text = "Update";
                                     btnSave.Enabled = true;
                                 }
@@ -74,6 +76,7 @@ namespace MOON.Web.Views.Dashboard
                 txtSlug.Text = dt.Rows[0]["Slug"].ToString();
                 ddlCategoryName.SelectedValue = dt.Rows[0]["CategoryId"].ToString();
                 txtDescription.Text = WebUtility.HtmlDecode(dt.Rows[0]["Description"].ToString());
+                txtExcerpt.Text = WebUtility.HtmlDecode(dt.Rows[0]["Excerpt"].ToString());
                 imgBox.ImageUrl = dt.Rows[0]["Thumbnail"].ToString();
             }
         }
@@ -168,7 +171,7 @@ namespace MOON.Web.Views.Dashboard
                       */
                     btnSave.Enabled = false;
 
-                    lblTitle.Text = "Title is already existed.";
+                    lblTitle.Text = "(Title is already existed.)";
                     lblTitle.Visible = true;
                 }
                 else if (countSlug > 0)
@@ -177,13 +180,13 @@ namespace MOON.Web.Views.Dashboard
                      * an error will be generated.
                       */
                     btnSave.Enabled = false;
-                    lblSlug.Text = "Slug is already existed.";
+                    lblSlug.Text = "(Slug is already existed.)";
                     lblSlug.Visible = true;
                 }
                 else if (countThumbnail > 0)
                 {
                     btnSave.Enabled = false;
-                    lblThubmail.Text = "Thumbnail is already existed.";
+                    lblThubmail.Text = "(Thumbnail is already existed.)";
                     lblThubmail.Visible = true;
                 }
                 else if (FileUploadPhoto.PostedFile.ContentLength >= 1024000000)
@@ -192,7 +195,7 @@ namespace MOON.Web.Views.Dashboard
                     {
                         lblPhoto.Visible = true;
                         btnSave.Enabled = false;
-                        lblPhoto.Text = "Imgae sizes has to be less than 128mb";
+                        lblPhoto.Text = "(Imgae sizes has to be less than 128mb)";
                     }
                     catch (Exception ex)
                     {
@@ -209,7 +212,7 @@ namespace MOON.Web.Views.Dashboard
                     }
                     else
                     {
-                        lblThubmail.Text = "Thumbnail is Required.";
+                        lblThubmail.Text = "(Thumbnail is Required.)";
                         lblThubmail.Visible = true;
                     }
                     string str1 = FileUploadPhoto.FileName;
@@ -233,7 +236,7 @@ namespace MOON.Web.Views.Dashboard
                      * an error will be generated.
                       */
                     btnSave.Enabled = false;
-                    lblTitle.Text = "Title is already existed.";
+                    lblTitle.Text = "(Title is already existed.)";
                     lblTitle.Visible = true;
                 }
                 else if (countUpdateSlug > 0)
@@ -243,13 +246,13 @@ namespace MOON.Web.Views.Dashboard
                      * an error will be generated.
                       */
                     btnSave.Enabled = false;
-                    lblSlug.Text = "Slug is already existed.";
+                    lblSlug.Text = "(Slug is already existed.)";
                     lblSlug.Visible = true;
                 }
                 else if (countUpdateThumbnail > 0)
                 {
                     btnSave.Enabled = false;
-                    lblThubmail.Text = "Thumbnail is already existed.";
+                    lblThubmail.Text = "(Thumbnail is already existed.)";
                     lblThubmail.Visible = true;
                 }
                 else if (FileUploadPhoto.PostedFile.ContentLength >= 1024000000)
@@ -258,7 +261,7 @@ namespace MOON.Web.Views.Dashboard
                     {
                         lblPhoto.Visible = true;
                         btnSave.Enabled = false;
-                        lblPhoto.Text = "Imgae sizes has to be less than 128mb";
+                        lblPhoto.Text = "(Imgae sizes has to be less than 128mb.)";
                     }catch (Exception ex)
                     {
                         lblPhoto.Text = ex.Message.ToString();
@@ -282,14 +285,8 @@ namespace MOON.Web.Views.Dashboard
                 }
                 else
                 {
-                    if (hdArticleId.Value == "0" && roleId == 2 && roleId != 3)
-                    {
-                        Response.Redirect("~/Views/Dashboard/Article/WaitingList.aspx");
-                    }
-                    else
-                    {
-                        Response.Redirect("~/Views/Dashboard/Article/ArticleList.aspx");
-                    }
+                    Response.Redirect("~/Views/Dashboard/Article/WaitingList.aspx");
+                   
                 }
             }
         }
@@ -327,7 +324,7 @@ namespace MOON.Web.Views.Dashboard
                 else
                 {
                     lblPhoto.Visible = true;
-                    lblPhoto.Text = "Please Image Upload by extension .jpg & .png & .jpeg";
+                    lblPhoto.Text = "(Only .jpg, .jpeg, .png files are supported.)";
                 }
             }
             else
@@ -384,7 +381,7 @@ namespace MOON.Web.Views.Dashboard
                     articleEntity.CategroyId = Convert.ToInt32(ddlCategoryName.SelectedItem.Value);
                     articleEntity.Slug = GetSlug(txtSlug.Text);
                     articleEntity.Description = WebUtility.HtmlEncode(txtDescription.Text.ToString());
-                    articleEntity.Excerpt = GetExcerpt(WebUtility.HtmlEncode(txtDescription.Text.ToString()));
+                    articleEntity.Excerpt = GetExcerpt(WebUtility.HtmlEncode(txtExcerpt.Text.ToString()));
                     articleEntity.Thumbnail = Image;
 
                     if (roleId == 1)
@@ -403,7 +400,7 @@ namespace MOON.Web.Views.Dashboard
                 else
                 {
                     lblThubmail.Visible = true;
-                    lblThubmail.Text = "Please Image Upload by extension .jpg & .png & .jpeg";
+                    lblThubmail.Text = "(Only .jpg, .jpeg, .png files are supported.)";
                 }
             }
 
@@ -418,7 +415,7 @@ namespace MOON.Web.Views.Dashboard
                 articleEntity.CategroyId = Convert.ToInt32(ddlCategoryName.SelectedItem.Value);
                 articleEntity.Slug = GetSlug(txtSlug.Text);
                 articleEntity.Description = WebUtility.HtmlEncode(txtDescription.Text.ToString());
-                articleEntity.Excerpt = GetExcerpt(WebUtility.HtmlEncode(txtDescription.Text.ToString()));
+                articleEntity.Excerpt = GetExcerpt(WebUtility.HtmlEncode(txtExcerpt.Text.ToString()));
                 articleEntity.Thumbnail = imgBox.ImageUrl;
                 if (roleId == 1)
                 {

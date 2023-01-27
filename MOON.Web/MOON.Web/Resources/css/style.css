@@ -775,6 +775,7 @@ aside .nav-close {
 .related-title {
     font-size: 16px;
     font-weight: 500;
+    word-break: break-word;
 }
 
 .related-category {
@@ -1568,7 +1569,7 @@ aside .nav-close {
     }
 
     .related-img {
-        width: 100%;
+        width: 10.417vw;
         height: 10.417vw;
         border-radius: 0.651vw;
     }
@@ -1578,7 +1579,7 @@ aside .nav-close {
     }
 
     .related-title {
-        font-size: 1.693vw;
+        font-size: 1.293vw;
         font-weight: 500;
     }
 
@@ -2303,7 +2304,7 @@ aside .nav-close {
     }
 
     .related-img {
-        width: 100%;
+        width: 24.5vw;
         height: 25.781vw;
         margin-right: 3.125vw;
         border-radius: 0.781vw;

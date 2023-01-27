@@ -19,9 +19,13 @@
                                             <p class="article-describe text-secondary ">
                                             <%# Server.HtmlDecode(Eval("Excerpt").ToString()) %>
                                             </p>
-                                            <div class="article-footer">
-                                            <p class="mb-0 fw-bold article-username"><%# Eval("Username") %></p> <!-- /.username-->
-                                            <span class="article-date"><%# Eval("CreatedAt","{0: hh:mm tt}") %></span><!-- /.article-date -->
+                                            <div class="article-footer d-flex justify-content-between align-items-center">
+                                                <div>
+                                                     <p class="mb-0 fw-bold article-username"><%# Eval("Username") %></p> <!-- /.username-->
+                                                        <span class="article-date d-block"><%# Eval("CreatedAt","{0: hh:mm tt}") %></span><!-- /.article-date -->
+                                                        <span class="article-date"><%# Eval("CreatedAt","{0: MMM dd , yyyy}") %></span><!-- /.article-date -->
+                                                </div>
+                                                <a href='<%# ResolveUrl("~/Views/Frontend/Detail.aspx?slug="+Eval("Slug")) %>' class="text-decoration-none btn btn-secondary rounded">Read more</a>
                                             </div>
                                         </div>
                                         </asp:LinkButton>

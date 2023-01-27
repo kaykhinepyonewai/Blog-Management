@@ -13,11 +13,11 @@
                             {  %>
                         <li class="breadcrumb-item"><a href='<%= ResolveUrl("~/Views/Dashboard/Home.aspx") %>' class="text-decoration-none">Dashboard</a></li>
                         <li><i class="fas fa-chevron-right "></i></li>
-                        <li class="breadcrumb-item active" aria-current="page">Archieve Lists</li>
+                        <li class="breadcrumb-item active" aria-current="page">Archive Lists</li>
                         <% }
                         else if (Convert.ToInt32(user[1]) == 2)
                         {  %>
-                        <li class="breadcrumb-item active" aria-current="page">Archieve Lists</li>
+                        <li class="breadcrumb-item active" aria-current="page">Archive Lists</li>
                         <% } %>
                     </ol>
                 </nav>
@@ -32,7 +32,8 @@
                         <p class="float-start mb-0 table-title">All Archieves</p>
                     </div>
                     <div class="table-wrapper overflow-scroll">
-                        <asp:GridView ID="gvArchieveArticle" runat="server" CssClass="table table-bordered mt-3" OnRowCommand="gvArchieveArticleRowCommand" OnRowDeleting="gvArchieveArticleRowDeleting" AutoGenerateColumns="False" AllowPaging="true"
+                        <asp:HiddenField ID="hdnValueId" runat="server" value=""/>
+                        <asp:GridView ID="gvArchieveArticle" runat="server" CssClass="table table-bordered mt-3" OnRowCommand="gvArchieveArticleRowCommand"  AutoGenerateColumns="False" AllowPaging="true"
                             OnPageIndexChanging="OnPageIndexChanging" PageSize="8">
                             <Columns>
                                 <asp:TemplateField HeaderText="No">
@@ -62,8 +63,8 @@
                                             <asp:LinkButton ID="lnkbtnEdit" runat="server" CssClass="btn btn-warning btn-sm" CommandName="Unarchieve" CommandArgument='<%# Eval("ArticleId") %>'>
                                             unArchieve
                                             </asp:LinkButton>
-                                            <asp:Button ID="lnkbtnDelete" UseSubmitBehavior="false" CssClass="btn btn-danger btn-sm" CommandName="Delete" OnClientClick="return delHandle(this)" CommandArgument='<%# Eval("ArticleId") %>' runat="server" Text="Delete" />
-                                        </div>
+                                            <asp:Button ID="btnDeleteHandler" CssClass="btn  btn-outline-danger d-none" runat="server" OnClick="gvRowDeleteing" Text="Delete" />
+                                            <asp:Button ID="btnDelete" UseSubmitBehavior="false" CssClass="btn btn-danger btn-sm" CommandName="Delete" OnClientClick='<%# "return delHandle("+ Eval("ArticleId") + ");" %>'  runat="server" Text="Delete" />                                        </div>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

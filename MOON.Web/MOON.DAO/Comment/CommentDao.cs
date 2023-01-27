@@ -60,6 +60,22 @@ namespace MOON.DAO.Comment
             return connection.ExecuteDataTable(CommandType.Text, strSql);
         }
 
+        public DataTable GetAllComments()
+        {
+            strSql = "SELECT Articles.ArticleId, Comments.CommentId, Users.Username ,Articles.Title, Comments.Message";
+            strSql += " FROM Comments INNER JOIN Articles ON Comments.ArticleId = Articles.ArticleId INNER JOIN ";
+            strSql += " Users ON Comments.UserId = Users.UserId ";
+            return connection.ExecuteDataTable(CommandType.Text, strSql);
+        }
+
+        public DataTable GetAllCommentsBySearch(string keyword)
+        {
+            strSql = "SELECT Articles.ArticleId, Comments.CommentId, Users.Username ,Articles.Title, Comments.Message";
+            strSql += " FROM Comments INNER JOIN Articles ON Comments.ArticleId = Articles.ArticleId INNER JOIN ";
+            strSql += " Users ON Comments.UserId = Users.UserId WHERE Articles.Title LIKE '%"+ keyword +"%' ";
+            return connection.ExecuteDataTable(CommandType.Text, strSql);
+        }
+
         public DataTable GetCommentsBySearch(int id, string keyword)
         {
             strSql = "SELECT Articles.ArticleId, Comments.CommentId, Users.Username ,Articles.Title, Comments.Message";

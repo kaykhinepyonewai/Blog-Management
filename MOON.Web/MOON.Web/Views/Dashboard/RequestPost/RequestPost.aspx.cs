@@ -12,7 +12,7 @@ namespace MOON.Web.Views.Dashboard.RequestPost
         {
             if (!IsPostBack)
             {
-                if(Session.Count != 0)
+                if(Session.Count != 0 && Session["Users"] != null)
                 {
                     UserService userService = new UserService();
                     string[] user = (string[])Session["Users"];

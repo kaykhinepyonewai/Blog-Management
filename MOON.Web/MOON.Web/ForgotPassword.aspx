@@ -29,7 +29,7 @@
                     <img src="./img/register/img_gradient.jpg" class="gradient" alt="Gradient Background">
                     <div class="logo-blk clearfix">
                         <img src="./img/common/favicon.png" class="logo-img" alt="Moon Logo">
-                        <h1 class="logo-ttl"><a href="#">Moon</a></h1>
+                        <h1 class="logo-ttl"><a href="<%= ResolveUrl("~/Default.aspx") %>">Moon</a></h1>
                     </div>
                     <!-- /.logo-blk -->
                     <div class="wb-blk">
@@ -42,7 +42,7 @@
                 <form class="forgot-form" runat="server">
                     <asp:Label ID="lblSuccessMsg" runat="server" CssClass="text-success" Text=""></asp:Label>
                     <div class="form-group mb-3">
-                        <label for='<%= txtEmail.ClientID %>'>Email</label>
+                        <label for='<%= txtEmail.ClientID %>'>Email <span class="text-danger">*</span></label>
                         <asp:TextBox ID="txtEmail" ValidationGroup="control" CssClass="form-control" runat="server" TextMode="Email"></asp:TextBox>
                         <asp:Label ID="lblErrorMsg" ValidationGroup="control" runat="server" ForeColor="Red" Text=""></asp:Label>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidatorForEmail" ControlToValidate="txtEmail" runat="server" ForeColor="Red" ErrorMessage="Email field is required"></asp:RequiredFieldValidator>

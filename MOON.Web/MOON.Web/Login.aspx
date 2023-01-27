@@ -40,12 +40,12 @@
                 <!-- /.img-left -->
                 <form class="login-form" id="form1" runat="server">
                     <div class="form-group mb-3">
-                        <asp:Label ID="lblEmail" CssClass="form-label" runat="server" Text="Email"></asp:Label>
+                        <asp:Label ID="lblEmail" CssClass="form-label" runat="server" >Email <span class="text-danger">*</span></asp:Label>
                         <asp:TextBox ValidationGroup="signin" CssClass="form-control" ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox>
                         <asp:RequiredFieldValidator ValidationGroup="signin" ID="RequiredFieldValidatorForEmail" ControlToValidate="txtEmail" runat="server" ForeColor="Red" ErrorMessage="Email field required."></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group mb-3">
-                        <asp:Label ID="lblPassword" CssClass="form-label" runat="server" Text="Password"></asp:Label>
+                        <asp:Label ID="lblPassword" CssClass="form-label" runat="server" >Password <span class="text-danger">*</span></asp:Label>
                         <asp:TextBox ValidationGroup="signin" CssClass="form-control" ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ValidationGroup="signin" ID="RequiredFieldValidatorForPassword" ControlToValidate="txtPassword" runat="server" ForeColor="Red" ErrorMessage="Password field required."></asp:RequiredFieldValidator>
                     </div>

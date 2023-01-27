@@ -1,7 +1,13 @@
-﻿using MOON.Entities.Report;
+﻿using MOON.Entities.Dashboard;
+using MOON.Entities.Report;
+using MOON.Services.Comment;
+using MOON.Services.Dashboard;
+using MOON.Services.Like;
 using MOON.Services.Report;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Web.UI.WebControls;
 
 namespace MOON.Web.Views.Dashboard.Report
@@ -111,11 +117,70 @@ namespace MOON.Web.Views.Dashboard.Report
             }
         }
 
-        protected void gvReportRowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gvRowDeleteing(object sender, EventArgs e)
         {
             ReportService reportService = new ReportService();
-            Label getid = (Label)gvReports.Rows[e.RowIndex].FindControl("lblReportID");
-            bool success = reportService.Delete(Convert.ToInt32(getid.Text.ToString()));
+            ArticleService articleService = new ArticleService();
+            PhotoService photoService = new PhotoService();
+            CommentService commentService = new CommentService();
+            LikeService likeService = new LikeService();
+
+            int id = Convert.ToInt32(hdnValueId.Value.ToString());
+
+            DataTable articledt = articleService.GetArticleByReport(id);
+            foreach (DataRow row in articledt.Rows)
+            {
+                // Do something with the data in the current row
+                string value = row["Thumbnail"].ToString();
+                string checkthumbpath = Server.MapPath(value);
+                string filethumbpath = Path.GetFullPath(checkthumbpath);
+                if (value != null)
+                {
+                    try
+                    {
+                        File.Delete(filethumbpath);
+                    }
+                    catch (Exception ex)
+                    {
+                        string messsage = ex.Message.ToString();
+                    }
+                }
+
+            }
+
+            foreach (DataRow row in articledt.Rows)
+            {
+                // Do something with the data in the current row
+                int articleid = Convert.ToInt32(row["ArticleId"].ToString());
+                List<PhotoEntity> photos = photoService.GetAllImages(articleid);
+                if (photos.Count > 0)
+                {
+                    foreach (var photo in photos)
+                    {
+                        string img = photo.PhotoImage.ToString();
+                        string checkpathimg = Server.MapPath(img);
+                        string filepathimg = Path.GetFullPath(checkpathimg);
+                        if (img != null)
+                        {
+                            try
+                            {
+                                File.Delete(filepathimg);
+                            }
+                            catch (Exception ex)
+                            {
+                                string messsage = ex.Message.ToString();
+                            }
+                        }
+                    }
+                }
+                bool commentsuccess = commentService.DeleteSpecificArticle(articleid);
+                bool likesuccess = likeService.DeleteSpecificArticle(articleid);
+                bool photosuccess = photoService.ReportAllPhotosRemove(articleid);
+                bool articlesuccess = articleService.RemoveAllArticles(articleid);
+            }
+
+
+            bool success = reportService.Delete(id);
            if(success)
             {
                 BindGrid();

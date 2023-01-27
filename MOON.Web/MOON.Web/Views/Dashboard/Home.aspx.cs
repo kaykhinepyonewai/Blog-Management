@@ -13,11 +13,12 @@ namespace MOON.Web.Views.Dashboard
         {
             if (!IsPostBack)
             {
-                string[] user = (string[])Session["Users"];
 
-                if (Session.Count != 0 )
+                if (Session.Count != 0 && Session["Users"] != null )
                 {
-                    if(Convert.ToInt32(user[1]) != 3)
+                    string[] user = (string[])Session["Users"];
+
+                    if (Convert.ToInt32(user[1]) != 3)
                     {
                         UserService userService = new UserService();
                         DataTable dt = userService.GetId(Convert.ToInt32(user[0]));

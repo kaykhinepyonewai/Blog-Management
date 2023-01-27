@@ -156,6 +156,24 @@ namespace MOON.DAO.Dashboard
             return connection.ExecuteDataTable(CommandType.Text, strSql);
         }
 
+        public DataTable GetArticleByCategory(int id)
+        {
+            strSql = "select * from Articles where Articles.CategoryId= " + id;
+            return connection.ExecuteDataTable(CommandType.Text, strSql);
+        }
+
+        public DataTable GetArticleByUser(int id)
+        {
+            strSql = "select * from Articles where Articles.UserId= " + id;
+            return connection.ExecuteDataTable(CommandType.Text, strSql);
+        }
+
+        public DataTable GetArticleByReport(int id)
+        {
+            strSql = "select * from Articles where Articles.ReportId= " + id;
+            return connection.ExecuteDataTable(CommandType.Text, strSql);
+        }
+
         /// <summary>
         /// Get All User with id
         /// </summary>
@@ -214,7 +232,14 @@ namespace MOON.DAO.Dashboard
         public DataTable GetArchieve(int id)
         {
 
-            strSql = "select * from Articles as Articles , Users as Users , Categories as Categories where Articles.CategoryId=Categories.CategoryId and Articles.UserId=Users.UserId and Articles.DeleteStatus=1 and Status='active' and Articles.UserId = " +id+ " ORDER BY Articles.Title DESC";
+            strSql = "select * from Articles as Articles , Users as Users , Categories as Categories where Articles.CategoryId=Categories.CategoryId and Articles.UserId=Users.UserId and Articles.DeleteStatus=1 and Articles.Status='active' and Articles.UserId = " + id+ " ORDER BY Articles.Title DESC";
+            return connection.ExecuteDataTable(CommandType.Text, strSql);
+        }
+
+        public DataTable GetAllArchives()
+        {
+
+            strSql = "select * from Articles as Articles , Users as Users , Categories as Categories where Articles.CategoryId=Categories.CategoryId and Articles.UserId=Users.UserId and Articles.DeleteStatus=1 and Articles.Status='active' ORDER BY Articles.Title DESC";
             return connection.ExecuteDataTable(CommandType.Text, strSql);
         }
 
@@ -226,6 +251,12 @@ namespace MOON.DAO.Dashboard
             return connection.ExecuteDataTable(CommandType.Text, strSql);
         }
 
+        public DataTable GetAllArchivesBySearch(string keyword)
+        {
+            strSql = "SELECT * FROM Articles INNER JOIN Categories ON Articles.CategoryId=Categories.CategoryId INNER JOIN Users ON Articles.UserId=Users.UserId WHERE Articles.DeleteStatus=1 AND Articles.Status='active' ";
+            strSql += " AND Articles.Title LIKE '%" + keyword + "%' ORDER BY Articles.Title DESC";
+            return connection.ExecuteDataTable(CommandType.Text, strSql);
+        }
 
         /// <summary>
         /// Get Article with id
@@ -355,13 +386,13 @@ namespace MOON.DAO.Dashboard
 
         public List<ArticleEntity> GetTrending()
         {
-            strSql = "SELECT Articles.* FROM Articles WHERE Articles.ArticleId in (SELECT Likes.ArticleID FROM Likes GROUP BY Likes.ArticleId HAVING COUNT(Likes.LikeId) >= 2) AND Articles.DeleteStatus = 0";
+            strSql = "SELECT Articles.* FROM Articles WHERE Articles.ArticleId in (SELECT Likes.ArticleID FROM Likes GROUP BY Likes.ArticleId HAVING COUNT(Likes.LikeId) >= 2) AND Articles.DeleteStatus = 0 AND Articles.Status='active' ";
             return connection.GetAllTrending(CommandType.Text, strSql);
         }
 
         public DataTable GetTrends()
         {
-            strSql = "SELECT Articles.* FROM Articles WHERE Articles.ArticleId in (SELECT Likes.ArticleID FROM Likes GROUP BY Likes.ArticleId HAVING COUNT(Likes.LikeId) >= 2) AND Articles.DeleteStatus = 0";
+            strSql = "SELECT Articles.* FROM Articles WHERE Articles.ArticleId in (SELECT Likes.ArticleID FROM Likes GROUP BY Likes.ArticleId HAVING COUNT(Likes.LikeId) >= 2) AND Articles.DeleteStatus = 0 AND Articles.Status='active' ";
             return connection.ExecuteDataTable(CommandType.Text, strSql);
         }
 
@@ -531,6 +562,19 @@ namespace MOON.DAO.Dashboard
         public bool ReportRemove(int id)
         {
             strSql = "DELETE FROM Articles WHERE ArticleId=@ArticleId AND DeleteStatus=0 AND ReportStatus = 1";
+
+            SqlParameter[] sqlPara =
+            {
+                new SqlParameter("@ArticleId",id)
+            };
+
+            bool success = connection.ExecuteNonQuery(CommandType.Text, strSql, sqlPara);
+            return success;
+        }
+
+        public bool RemoveAllArticles(int id)
+        {
+            strSql = "DELETE FROM Articles WHERE ArticleId=@ArticleId ";
 
             SqlParameter[] sqlPara =
             {

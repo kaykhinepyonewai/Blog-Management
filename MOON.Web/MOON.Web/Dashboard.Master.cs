@@ -11,12 +11,13 @@ namespace MOON.Web
         {
             if (!IsPostBack)
             {
-                if (Session["Users"] == null)
+                if (Session["Users"] == null && Session.Count == 0)
                 {
                     Response.Redirect("~/Login.aspx");
+                }else
+                {
+                    LoadedInfo();
                 }
-
-                LoadedInfo();                    
             }
         }
         protected void lnkBtnLogoutClick(object sender, EventArgs e)
@@ -37,8 +38,8 @@ namespace MOON.Web
             DataTable dt = userService.GetId(Convert.ToInt32(user[0]));
             imgProfile.ImageUrl = dt.Rows[0]["Profile"].ToString();
             username.InnerText = dt.Rows[0]["Username"].ToString();
-            hyprLnkProfile.NavigateUrl = "~/Views/Dashboard/User/UserProfile.aspx?username=" + dt.Rows[0]["Username"].ToString();
-            hyprLnkPwdSetting.NavigateUrl = "~/Views/Dashboard/User/PasswordSetting.aspx?username=" + dt.Rows[0]["Username"].ToString();
+            hyprLnkProfile.NavigateUrl = "~/Views/Dashboard/User/UserProfile.aspx?email=" + dt.Rows[0]["Email"].ToString();
+            hyprLnkPwdSetting.NavigateUrl = "~/Views/Dashboard/User/PasswordSetting.aspx?email=" + dt.Rows[0]["Email"].ToString();
         }
 
         protected void lnkBtnHomeClick(object sender, EventArgs e)
@@ -73,6 +74,7 @@ namespace MOON.Web
             } else if ( path == "/Views/Dashboard/Comment/CommentList")
             {
                 Response.Redirect("~/Views/Dashboard/Comment/CommentList.aspx?keyword=" + txtSearch.Text);
+
             } else if ( path == "/Views/Dashboard/Category/CategoryList")
             {
                 Response.Redirect("~/Views/Dashboard/Category/CategoryList.aspx?keyword=" + txtSearch.Text);

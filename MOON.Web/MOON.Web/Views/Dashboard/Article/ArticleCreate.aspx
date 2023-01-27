@@ -35,31 +35,36 @@
                 <h3 class="create-ttl">Share your stories</h3>
                 <div class="form-group">
                     <asp:HiddenField ID="hdArticleId" runat="server" Value="0" />
-                    <label class="form-label" for="<%= txtTitle.ClientID %>">Title</label>
+                    <label class="form-label" for="<%= txtTitle.ClientID %>">Title <span class="text-danger">*</span></label>
                     <asp:Label ID="lblTitle" CssClass="form-label" runat="server" Text="" Visible="false" ForeColor="Red"></asp:Label>
                     <asp:TextBox ID="txtTitle" class="form-control" runat="server"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="revTitle" runat="server" ValidationGroup="validGp" ControlToValidate="txtTitle" ErrorMessage="Input title field is required." ForeColor="#FF3300"></asp:RequiredFieldValidator>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="<%= ddlCategoryName.ClientID %>">Category Name</label>
+                    <label class="form-label" for="<%= ddlCategoryName.ClientID %>">Category Name <span class="text-danger">*</span></label>
                     <asp:DropDownList ID="ddlCategoryName" runat="server" CssClass="form-control"></asp:DropDownList>
                     <asp:RequiredFieldValidator ID="revCategoryName" runat="server" InitialValue="0" ValidationGroup="validGp" ControlToValidate="ddlCategoryName" ErrorMessage="Select your category." ForeColor="#FF3300"></asp:RequiredFieldValidator>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="<%= txtSlug.ClientID %>">Slug</label>
+                    <label class="form-label" for="<%= txtSlug.ClientID %>">Slug <span class="text-danger">*</span></label>
                      <asp:Label ID="lblSlug" CssClass="form-label" runat="server" Text="" Visible="false" ForeColor="Red"></asp:Label>
                     <asp:TextBox ID="txtSlug" class="form-control" runat="server"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="revSlugName" runat="server" ValidationGroup="validGp" ControlToValidate="txtSlug" ErrorMessage="Input slug field is required." ForeColor="#FF3300"></asp:RequiredFieldValidator>   
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="<%= txtDescription.ClientID %>">Description</label>
-                    <asp:TextBox ID="txtDescription" class="form-control" TextMode="MultiLine" runat="server"></asp:TextBox>
+                    <label class="form-label" for="<%= txtExcerpt.ClientID %>">Excerpt <span class="text-danger">*</span></label>
+                    <asp:TextBox ID="txtExcerpt" class="form-control" TextMode="MultiLine" runat="server" Rows="5"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="revExcerpt" runat="server" ValidationGroup="validGp"  ControlToValidate="txtDescription" ErrorMessage="Excerpt field is required." ForeColor="#FF3300"></asp:RequiredFieldValidator>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="<%= txtDescription.ClientID %>">Description <span class="text-danger">*</span></label>
+                    <asp:TextBox ID="txtDescription" class="form-control" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="revDescription" runat="server" ValidationGroup="validGp" ControlToValidate="txtDescription" ErrorMessage="Description field is required." ForeColor="#FF3300"></asp:RequiredFieldValidator>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="<%= FileUploadThum.ClientID %>">Thumbnail</label>
+                    <label class="form-label" for="<%= FileUploadThum.ClientID %>">Thumbnail <span class="text-danger">*</span></label>
                     <asp:FileUpload ID="FileUploadThum" class="form-control" runat="server" />
-                    <asp:Image ID="imgBox" CssClass="article-thumbnail mt-2" runat="server" />
+                    <asp:Image ID="imgBox" Visible="false"  CssClass="article-thumbnail mt-2" runat="server" />
                     <asp:Label ID="lblThubmail" runat="server" Text="" Visible="false" ForeColor="Red"></asp:Label>
                 </div>
                 <div class="form-group">
@@ -67,7 +72,7 @@
                     <asp:Label ID="lblPhoto" CssClass="form-label" runat="server" Visible="false" Text="Label" ForeColor="#CC0000"></asp:Label>
                     <asp:FileUpload ID="FileUploadPhoto" AllowMultiple="true" class="form-control" runat="server" />
                     <asp:RequiredFieldValidator ID="revPhoto" runat="server" ValidationGroup="validGp1" ControlToValidate="FileUploadPhoto" ErrorMessage="Multiple photos required." ForeColor="#FF3300"></asp:RequiredFieldValidator>
-                    <div class="table-wrapper">
+                    <div class="table-img-wrapper">
                         <asp:HiddenField ID="txtHidden" runat="server" />
                         <table class="table table-bordered align-middle">
                             <tbody>

@@ -42,28 +42,28 @@
                 <form class="register-form" id="form1" runat="server">
                     <asp:HiddenField ID="hdnLoginUserId" Value="0" runat="server" />
                     <div class="form-group mb-3">
-                        <asp:Label ID="lblUsername" CssClass="form-label" runat="server" Text="Username"></asp:Label>
+                        <asp:Label ID="lblUsername" CssClass="form-label" runat="server" >Username <span class="text-danger">*</span></asp:Label>
                         <br />
                         <asp:Label ID="lblCheckUserName" CssClass="form-label" runat="server" ForeColor="Red" Text=""></asp:Label>
                         <asp:TextBox ValidationGroup="signup" CssClass="form-control" ID="txtUsername" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ValidationGroup="signup" ID="RequiredFieldValidatorUsername" ControlToValidate="txtUsername" runat="server" ForeColor="Red" ErrorMessage="Username field required."></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group mb-3">
-                        <asp:Label ID="lblEmail" CssClass="form-label" runat="server" Text="Email"></asp:Label>
+                        <asp:Label ID="lblEmail" CssClass="form-label" runat="server" >Email <span class="text-danger">*</span></asp:Label>
                         <br />
                         <asp:Label ID="lblCheckEmail" CssClass="form-label" runat="server" ForeColor="Red" Text=""></asp:Label>
                         <asp:TextBox ValidationGroup="signup" CssClass="form-control" ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox>
                         <asp:RequiredFieldValidator ValidationGroup="signup" ID="RequiredFieldValidatorForEmail" ControlToValidate="txtEmail" runat="server" ForeColor="Red" ErrorMessage="Email field required."></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group mb-3">
-                        <asp:Label ID="lblPassword" CssClass="form-label" runat="server" Text="Password"></asp:Label>
+                        <asp:Label ID="lblPassword" CssClass="form-label" runat="server" >Password <span class="text-danger">*</span></asp:Label>
                         <br />
                         <asp:Label ID="lblCheckPassword" CssClass="form-label" runat="server" ForeColor="Red" Text=""></asp:Label>
                         <asp:TextBox ValidationGroup="signup" CssClass="form-control" ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ValidationGroup="signup" ID="RequiredFieldValidatorForPassword" ControlToValidate="txtPassword" runat="server" ForeColor="Red" ErrorMessage="Password field required."></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group mb-3">
-                        <asp:Label ID="lblConfirmPassword" CssClass="form-label" runat="server" Text="Confirm Password"></asp:Label>
+                        <asp:Label ID="lblConfirmPassword" CssClass="form-label" runat="server" >Confirm Password <span class="text-danger">*</span></asp:Label>
                         <asp:TextBox ValidationGroup="signup" CssClass="form-control" ID="txtConfirmPassword" TextMode="Password" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ValidationGroup="signup" ID="RequiredFieldValidatorConfirmPassword" ControlToValidate="txtConfirmPassword" runat="server" ForeColor="Red" ErrorMessage="Confirm Password field required."></asp:RequiredFieldValidator>
                     </div>

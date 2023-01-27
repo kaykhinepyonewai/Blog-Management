@@ -32,7 +32,9 @@
                         <p class="float-start mb-0 table-title">Your Article's Comment</p>
                     </div>
                     <div class="table-wrapper overflow-scroll">
-                        <asp:GridView ID="gvComments" runat="server" CssClass="table table-bordered mt-3" AutoGenerateColumns="false" OnRowDeleting="gvCommentRowDeleting" AllowPaging="true"
+                        <asp:HiddenField ID="hdnValueId" Value="" runat="server" />
+                        <asp:HiddenField ID="hdnArticleId" Value="" runat="server" />
+                        <asp:GridView ID="gvComments" runat="server" CssClass="table table-bordered mt-3" AutoGenerateColumns="false" AllowPaging="true"
                             OnPageIndexChanging="OnPageIndexChanging" PageSize="8">
                             <Columns>
                                 <asp:TemplateField HeaderText="No">
@@ -60,7 +62,8 @@
                                 <asp:TemplateField HeaderText="Actions">
                                     <ItemTemplate>
                                         <div class="text-nowrap">
-                                            <asp:Button ID="btnDelete" UseSubmitBehavior="false" CssClass="btn btn-danger btn-sm" CommandName="Delete" OnClientClick="return delHandle(this)" runat="server" Text="Delete" />
+                                            <asp:Button ID="btnDeleteHandler" CssClass="btn  btn-outline-danger d-none" runat="server" OnClick="gvRowDeleteing" Text="Delete" />
+                                        <asp:Button ID="btnDelete" UseSubmitBehavior="false" CssClass="btn btn-danger btn-sm" CommandName="Delete" OnClientClick='<%# "return delHandle("+ Eval("CommentId") + " , "+ Eval("ArticleId") +");" %>'  runat="server" Text="Delete" />  
                                         </div>
                                     </ItemTemplate>
                                 </asp:TemplateField>

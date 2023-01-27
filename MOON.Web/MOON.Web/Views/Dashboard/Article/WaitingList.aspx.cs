@@ -11,7 +11,7 @@ namespace MOON.Web.Views.Dashboard.Article
         {
             if (!IsPostBack)
             {
-                if (Session.Count != 0)
+                if (Session.Count != 0 && Session["Users"] != null)
                 {
                     string[] user = (string[])Session["Users"];
 
@@ -56,13 +56,14 @@ namespace MOON.Web.Views.Dashboard.Article
             }
         }
 
-        protected void gvArticleRowDeleting(object sender, GridViewDeleteEventArgs e)
+
+        protected void gvRowDeleteing(object sender, EventArgs e)
         {
-            Label lblArticleId = (Label)gvArticle.Rows[e.RowIndex].FindControl("lblArticleId");
+            int id = Convert.ToInt32(hdnValueId.Value.ToString());
             ArticleService articleService = new ArticleService();
             PhotoService photoService = new PhotoService();
-            bool success = articleService.Delete(Convert.ToInt32(lblArticleId.Text));
-            bool success1 = photoService.DeleteAritcle(Convert.ToInt32(lblArticleId.Text));
+            bool success = articleService.Delete(id);
+            bool success1 = photoService.DeleteAritcle(id);
 
             if (success)
             {

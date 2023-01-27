@@ -14,24 +14,24 @@ namespace MOON.Web.Views.Dashboard.User
         {
             if (!IsPostBack)
             {
-                if (Session.Count != 0)
+                if (Session.Count != 0 && Session["Users"] != null)
                 {
                     UserService userService = new UserService();
                     string[] user = (string[])Session["Users"];
                     DataTable dt = userService.GetId(Convert.ToInt32(user[0])); 
                     // Get current user 
-                    DataTable checkuser = userService.GetSpecific(Request.QueryString["username"].ToString(), "Username"); 
+                    DataTable checkuser = userService.GetSpecific(Request.QueryString["email"].ToString(), "Email"); 
                     // check user with querystring
-                    if (Request.QueryString["username"] != null && Request.QueryString["username"].ToString() == dt.Rows[0]["username"].ToString()
+                    if (Request.QueryString["email"] != null && Request.QueryString["email"].ToString() == dt.Rows[0]["Email"].ToString()
                         && Convert.ToInt32(dt.Rows[0]["RoleId"]) != 3 || Convert.ToInt32(dt.Rows[0]["RoleId"]) == 1) 
                     {  //To check if an admin can modify every user's information, if not, the user can only modify their own information
                         if (checkuser.Rows.Count > 0) 
                        // To check if a username at URI that neither exists in the database nor does not exist in the database
                         {
-                            hdnUsername.Value = Request.QueryString["username"].ToString();
+                            hdnUsername.Value = checkuser.Rows[0]["Username"].ToString();
                             BindData();
                             BindRoleList();
-                            if (Convert.ToInt32(checkuser.Rows[0]["RoleId"]) == 1) 
+                            if (Convert.ToInt32(checkuser.Rows[0]["RoleId"]) == 1 && checkuser.Rows[0]["Email"].ToString() == "admin@gmail.com") 
                             { 
                                 roleText.Style.Add("display", "inline-block"); 
                             } 
@@ -60,6 +60,7 @@ namespace MOON.Web.Views.Dashboard.User
         {
             RoleService roleService = new RoleService();
             DataTable dt = roleService.GetAll();
+
             ddlRole.DataSource = dt;
             ddlRole.DataTextField = "Role";
             ddlRole.DataValueField = "RoleId";
@@ -77,7 +78,7 @@ namespace MOON.Web.Views.Dashboard.User
         private void BindData()
         {
             UserService userService = new UserService();
-            DataTable dt = userService.GetSpecific(Request.QueryString["username"].ToString(),"Username");
+            DataTable dt = userService.GetSpecific(Request.QueryString["email"].ToString(),"Email");
             if (dt.Rows.Count > 0)
             {
                 txtUsername.Text = dt.Rows[0]["Username"].ToString();
@@ -92,7 +93,7 @@ namespace MOON.Web.Views.Dashboard.User
             }
             try
             {
-                if (Convert.ToInt32(dt.Rows[0]["RoleId"].ToString()) == 1)
+                if (Convert.ToInt32(dt.Rows[0]["RoleId"].ToString()) == 1 && dt.Rows[0]["Email"].ToString() == "admin@gmail.com")
                 {
                     ddlRole.Enabled = false;
                 }
@@ -109,7 +110,7 @@ namespace MOON.Web.Views.Dashboard.User
         protected void btnUpdateProfile(object sender, EventArgs e)
         {
             UserService userService = new UserService();
-            DataTable dt = userService.GetSpecific(Request.QueryString["username"].ToString(),"Username");
+            DataTable dt = userService.GetSpecific(Request.QueryString["email"].ToString(),"Email");
 
             //To send current user id, role, password and date to CreateData
             int id = Convert.ToInt32(dt.Rows[0]["UserId"].ToString());
@@ -160,13 +161,13 @@ namespace MOON.Web.Views.Dashboard.User
                             }
                             else
                             {
-                                lblImgError.Text = "Imgae sizes has to be less than 100kb";
+                                lblImgError.Text = "(Imgae sizes has to be less than 100kb.)";
                             }
 
                         }
                         else
                         {
-                            lblImgError.Text = "Only .jpg, .jpeg, .png files are supported.";
+                            lblImgError.Text = "(Only .jpg, .jpeg, .png files are supported.)";
                         }
                     }
                     else
@@ -187,12 +188,12 @@ namespace MOON.Web.Views.Dashboard.User
                 }
                 else
                 {
-                    lblCheckUserName.Text = "Username is already existed.";
+                    lblCheckUserName.Text = "(Username is already existed.)";
                 }
             }
             else
             {
-                lblCheckEmail.Text = "Email is already taken.";
+                lblCheckEmail.Text = "(Email is already taken.)";
             }
         }  
        
@@ -241,7 +242,7 @@ namespace MOON.Web.Views.Dashboard.User
         private String UpdatePhoto(FileUpload file)
         {
             UserService userService = new UserService();
-            DataTable dt = userService.GetSpecific(Request.QueryString["username"].ToString(),"Username");
+            DataTable dt = userService.GetSpecific(Request.QueryString["email"].ToString(),"Email");
             if (file.HasFiles)
             {
                 string extension = Path.GetExtension(file.FileName);

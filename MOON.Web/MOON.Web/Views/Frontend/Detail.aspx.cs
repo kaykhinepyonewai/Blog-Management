@@ -33,6 +33,11 @@ namespace MOON.Web.Views.Frontend
                     Response.Redirect("~/Default.aspx");
                 }
                 ViewersLoader();
+               string slug = Request.QueryString["slug"].ToString();
+               ArticleService articleService = new ArticleService();
+               DataTable id = articleService.GetSpecific("Slug", slug);
+              int  count = Convert.ToInt32(id.Rows[0]["ArticleId"].ToString());
+               Count(count);
             }
         }
 
@@ -54,11 +59,14 @@ namespace MOON.Web.Views.Frontend
         {
             if (Session.Count != 0)
             {
-                string[] user = (string[])Session["Users"];
-                UserService userService = new UserService();
-                DataTable dt = userService.GetId(Convert.ToInt32(user[0]));
-                imgProfile.ImageUrl = dt.Rows[0]["Profile"].ToString();
-                username.InnerText = dt.Rows[0]["Username"].ToString();
+                if (Session["Users"] != null)
+                {
+                    string[] user = (string[])Session["Users"];
+                    UserService userService = new UserService();
+                    DataTable dt = userService.GetId(Convert.ToInt32(user[0]));
+                    imgProfile.ImageUrl = dt.Rows[0]["Profile"].ToString();
+                    username.InnerText = dt.Rows[0]["Username"].ToString();
+                }
             }
         }
 
@@ -309,9 +317,12 @@ namespace MOON.Web.Views.Frontend
                 likeEntity.ArticleId = Convert.ToInt32(val);
                 LikeService likeService = new LikeService();
                 success = likeService.Delete(likeEntity);
-                Response.Write("<script>history.go(-1)</script>");
+                if (success)
+                {
+                    ViewersLoader();
+                }
             }
-   
+
         }
 
         public int GetRoleId()
@@ -343,7 +354,10 @@ namespace MOON.Web.Views.Frontend
                 likeEntity.ArticleId = Convert.ToInt32(val);
                 LikeService likeService = new LikeService();
                 success = likeService.Insert(likeEntity);
-                Response.Write("<script>history.go(-1)</script>");
+                if(success)
+                {
+                    ViewersLoader();
+                }
             }
          }
 

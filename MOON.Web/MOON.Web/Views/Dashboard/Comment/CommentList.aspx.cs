@@ -1,4 +1,6 @@
 ﻿using MOON.Services.Comment;
+using MOON.Services.Dashboard;
+using MOON.Services.User;
 using System;
 using System.Data;
 using System.Web.UI.WebControls;
@@ -21,17 +23,41 @@ namespace MOON.Web.Views.Dashboard.Comment
         private void BindGrid()
         {
             CommentService commentService = new CommentService();
-            if (Request.QueryString["keyword"] != null)
+            UserService userService = new UserService();
+
+            string[] user = (string[])Session["Users"]; // get specific user info in the session array
+            DataTable dt = userService.GetId(Convert.ToInt32(user[0]));
+            int role = Convert.ToInt32(dt.Rows[0]["RoleId"].ToString());
+
+            if (role == 1)
             {
-                DataTable dt = commentService.GetCommentsBySearch(Convert.ToInt32(Session["UserId"].ToString()), Request.QueryString["keyword"].ToString());
-                gvComments.DataSource = dt;
-                gvComments.DataBind();
+                if (Request.QueryString["keyword"] != null)
+                {
+                    DataTable dt1 = commentService.GetAllCommentsBySearch(Request.QueryString["keyword"].ToString());
+                    gvComments.DataSource = dt1;
+                    gvComments.DataBind();
+                }
+                else
+                {
+                    DataTable dt2 = commentService.GetAllComments();
+                    gvComments.DataSource = dt2;
+                    gvComments.DataBind();
+                }
             }
             else
             {
-                DataTable dt = commentService.GetComments(Convert.ToInt32(Session["UserId"].ToString()));
-                gvComments.DataSource = dt;
-                gvComments.DataBind();
+                if (Request.QueryString["keyword"] != null)
+                {
+                    DataTable dt3 = commentService.GetCommentsBySearch(Convert.ToInt32(Session["UserId"].ToString()), Request.QueryString["keyword"].ToString());
+                    gvComments.DataSource = dt3;
+                    gvComments.DataBind();
+                }
+                else
+                {
+                    DataTable dt4 = commentService.GetComments(Convert.ToInt32(Session["UserId"].ToString()));
+                    gvComments.DataSource = dt4;
+                    gvComments.DataBind();
+                }
             }
         }
 
@@ -52,6 +78,18 @@ namespace MOON.Web.Views.Dashboard.Comment
                 this.BindGrid();
             }
 
+        }
+
+        protected void gvRowDeleteing(object sender, EventArgs e)
+        {
+            int commentId = Convert.ToInt32(hdnValueId.Value.ToString());
+            int articleId = Convert.ToInt32(hdnArticleId.Value.ToString());
+            CommentService commentService = new CommentService();
+            bool success = commentService.DeleteComment(articleId,commentId);
+            if (success)
+            {
+                this.BindGrid();
+            }
         }
     }
 }

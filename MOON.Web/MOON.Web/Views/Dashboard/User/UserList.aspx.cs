@@ -1,8 +1,13 @@
-﻿using MOON.Entities.User;
+﻿using MOON.Entities.Dashboard;
+using MOON.Entities.User;
+using MOON.Services.Comment;
+using MOON.Services.Dashboard;
+using MOON.Services.Like;
 using MOON.Services.Role;
 using MOON.Services.User;
 using OfficeOpenXml;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.IO;
@@ -16,7 +21,7 @@ namespace MOON.Web.Views.Dashboard.User
         {
             if (!IsPostBack)
             {
-                if (Session.Count != 0)
+                if (Session.Count != 0 && Session["Users"] != null)
                 {
                     UserService userService = new UserService();
                     string[] user = (string[])Session["Users"];
@@ -157,16 +162,72 @@ namespace MOON.Web.Views.Dashboard.User
         {
             if (e.CommandName == "Edit")
             {
-                Response.Redirect("~/Views/Dashboard/User/UserProfile.aspx?username=" + e.CommandArgument);
+                Response.Redirect("~/Views/Dashboard/User/UserProfile.aspx?email=" + e.CommandArgument);
             }
         }
 
-        protected void gvUserRowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gvRowDeleteing(object sender, EventArgs e)
         {
-            Label getId = (Label)gvUsers.Rows[e.RowIndex].FindControl("lblUserID");
+            int id = Convert.ToInt32(hdnValueId.Value.ToString());
             UserService userService = new UserService();
+            ArticleService articleService = new ArticleService();
+            PhotoService photoService = new PhotoService();
+            CommentService commentService = new CommentService();
+            LikeService likeService = new LikeService();
 
-            DataTable dt = userService.GetId(Convert.ToInt32(getId.Text));
+            DataTable articledt = articleService.GetArticleByUser(id);
+            foreach (DataRow row in articledt.Rows)
+            {
+                // Do something with the data in the current row
+                string value = row["Thumbnail"].ToString();
+                string checkthumbpath = Server.MapPath(value);
+                string filethumbpath = Path.GetFullPath(checkthumbpath);
+                if (value != null)
+                {
+                    try
+                    {
+                        File.Delete(filethumbpath);
+                    }
+                    catch (Exception ex)
+                    {
+                        string messsage = ex.Message.ToString();
+                    }
+                }
+
+            }
+
+            foreach (DataRow row in articledt.Rows)
+            {
+                // Do something with the data in the current row
+                int articleid = Convert.ToInt32(row["ArticleId"].ToString());
+                List<PhotoEntity> photos = photoService.GetAllImages(articleid);
+                if (photos.Count > 0)
+                {
+                    foreach (var photo in photos)
+                    {
+                        string img = photo.PhotoImage.ToString();
+                        string checkpathimg = Server.MapPath(img);
+                        string filepathimg = Path.GetFullPath(checkpathimg);
+                        if (img != null)
+                        {
+                            try
+                            {
+                                File.Delete(filepathimg);
+                            }
+                            catch (Exception ex)
+                            {
+                                string messsage = ex.Message.ToString();
+                            }
+                        }
+                    }
+                }
+                bool commentsuccess = commentService.DeleteSpecificArticle(articleid);
+                bool likesuccess = likeService.DeleteSpecificArticle(articleid);
+                bool photosuccess = photoService.ReportAllPhotosRemove(articleid);
+                bool articlesuccess = articleService.RemoveAllArticles(articleid);
+            }
+
+            DataTable dt = userService.GetId(id);
             string userimg = dt.Rows[0]["Profile"].ToString();
             string checkpath = Server.MapPath(userimg);
             string filepath = Path.GetFullPath(checkpath);
@@ -179,10 +240,10 @@ namespace MOON.Web.Views.Dashboard.User
                 }
                 catch (Exception ex)
                 {
-
+                    string message = ex.Message;
                 }
             }
-            bool success = userService.Delete(Convert.ToInt32(getId.Text.ToString()));
+            bool success = userService.Delete(id);
             if (success)
             {
                 BindGrid();

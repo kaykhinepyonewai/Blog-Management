@@ -23,7 +23,8 @@
                         <p class="float-start mb-0 table-title">All Waiting List</p>
                     </div>
                     <div class="table-wrapper overflow-scroll">
-                        <asp:GridView ID="gvArticle" runat="server" CssClass="table table-bordered mt-3" AutoGenerateColumns="False" OnRowCommand="gvArticleRowCommand" OnRowDeleting="gvArticleRowDeleting" AllowPaging="true"
+                        <asp:HiddenField ID="hdnValueId" Value="" runat="server" />
+                        <asp:GridView ID="gvArticle" runat="server" CssClass="table table-bordered mt-3" AutoGenerateColumns="False" OnRowCommand="gvArticleRowCommand" AllowPaging="true"
                             OnPageIndexChanging="OnPageIndexChanging" PageSize="8">
                             <Columns>
                                 <asp:TemplateField HeaderText="No">
@@ -49,10 +50,13 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Actions">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lnkbtnEdit" runat="server" CssClass="btn btn-warning btn-sm" CommandName="Edit" CommandArgument='<%# Eval("ArticleId") %>'>
+                                        <div class="text-nowrap">
+                                            <asp:LinkButton ID="lnkbtnEdit" runat="server" CssClass="btn btn-warning btn-sm" CommandName="Edit" CommandArgument='<%# Eval("ArticleId") %>'>
                                             Edit
                                         </asp:LinkButton>
-                                        <asp:Button ID="lnkbtnDelete" UseSubmitBehavior="false" CssClass="btn btn-danger btn-sm" CommandName="Delete" OnClientClick="return delHandle(this)" CommandArgument='<%# Eval("ArticleId") %>' runat="server" Text="Delete" />
+                                            <asp:Button ID="btnDeleteHandler" CssClass="btn  btn-outline-danger d-none" runat="server" OnClick="gvRowDeleteing" Text="Delete" />
+                                            <asp:Button ID="btnDelete" UseSubmitBehavior="false" CssClass="btn btn-danger btn-sm" CommandName="Delete" OnClientClick='<%# "return delHandle("+ Eval("ArticleId") + ");" %>'  runat="server" Text="Delete" />                                                  
+                                        </div>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

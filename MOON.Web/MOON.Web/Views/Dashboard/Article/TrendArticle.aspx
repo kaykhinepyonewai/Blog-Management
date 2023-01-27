@@ -10,7 +10,7 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href='<%= ResolveUrl("~/Views/Dashboard/Home.aspx") %>' class="text-decoration-none">Dashboard</a></li>
                         <li><i class="fas fa-chevron-right "></i></li>
-                        <li class="breadcrumb-item active" aria-current="page">Articles</li>
+                        <li class="breadcrumb-item active" aria-current="page">Trend Articles</li>
                     </ol>
                 </nav>
             </div>
@@ -24,7 +24,8 @@
                         <p class="float-start mb-0 table-title">All Trends</p>
                     </div>
                     <div class="table-wrapper overflow-scroll">
-                        <asp:GridView ID="gvTrendArticle" runat="server" CssClass="table table-bordered mt-3" AutoGenerateColumns="False" OnRowCommand="gvTrendArticleRowCommand" OnRowDeleting="gvTrendArticleRowDeleting" AllowPaging="true"
+                        <asp:HiddenField ID="hdnValueId" Value="" runat="server" />
+                        <asp:GridView ID="gvTrendArticle" runat="server" CssClass="table table-bordered mt-3" AutoGenerateColumns="False" OnRowCommand="gvTrendArticleRowCommand" AllowPaging="true"
                             OnPageIndexChanging="OnPageIndexChanging" PageSize="8">
                             <Columns>
                                 <asp:TemplateField HeaderText="No">
@@ -54,7 +55,8 @@
                                             <asp:LinkButton ID="lnkbtnEdit" runat="server" CssClass="btn btn-warning btn-sm" CommandName="Edit" CommandArgument='<%# Eval("ArticleId") %>'>
                                             Edit
                                         </asp:LinkButton>
-                                        <asp:Button ID="lnkbtnDelete" UseSubmitBehavior="false" CssClass="btn btn-danger btn-sm" CommandName="Delete" OnClientClick="return delHandle(this)" CommandArgument='<%# Eval("ArticleId") %>' runat="server" Text="Delete" />
+                                            <asp:Button ID="btnDeleteHandler" CssClass="btn  btn-outline-danger d-none" runat="server" OnClick="gvRowDeleteing" Text="Delete" />
+                                            <asp:Button ID="btnDelete" UseSubmitBehavior="false" CssClass="btn btn-danger btn-sm" CommandName="Delete" OnClientClick='<%# "return delHandle("+ Eval("ArticleId") + ");" %>'  runat="server" Text="Delete" />                                        
                                         </div>
                                     </ItemTemplate>
                                 </asp:TemplateField>

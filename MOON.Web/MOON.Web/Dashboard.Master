@@ -21,6 +21,7 @@
     <link href="~/Content/all.min.css" rel="stylesheet" />
     <link href="~/Content/slick.css" rel="stylesheet" />
     <link href="~/Content/sweetalert.min.css" rel="stylesheet" />
+    <link href="~/Content/summernote/summernote-lite.css" rel="stylesheet" />
     <link href="~/Resources/css/common.css" rel="stylesheet" />
     <link href="~/Resources/css/style.css" rel="stylesheet" />
     <link href="~/Resources/css/darticles.css" rel="stylesheet" />
@@ -65,7 +66,7 @@
             <a href="<%= ResolveUrl("~/Views/Dashboard/Article/ArchieveList.aspx") %>" class="sidebar-link">
               <div class="link-items">
                 <i class="fa-solid fa-box-archive"></i>
-                <span class="sidebar-link-text">Archieve Articles</span>
+                <span class="sidebar-link-text">Archive Articles</span>
               </div>
             </a>
           </li>
@@ -192,6 +193,7 @@
     <script src='<%= ResolveUrl("~/Scripts/Library/jquery.min.js") %>'></script>
      <script src='<%= ResolveUrl("~/Scripts/Library/jquery.heightLine.js") %>'></script>
      <script src='<%= ResolveUrl("~/Scripts/Library/slick.min.js") %>'></script>
+     <script src='<%= ResolveUrl("~/Scripts/summernote/summernote-lite.js") %>'></script>
      <script src='<%= ResolveUrl("~/Scripts/sweetalert.min.js") %>'></script>
     <script src='<%= ResolveUrl("~/Resources/js/common.js") %>'></script>
 </body>
