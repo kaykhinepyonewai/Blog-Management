@@ -287,6 +287,7 @@
     <Content Include="Views\Dashboard\Comment\CommentList.aspx" />
     <Content Include="Views\Dashboard\Home.aspx" />
     <Content Include="Views\Dashboard\Report\ReportCreate.aspx" />
+    <Content Include="Views\Dashboard\Report\ReportDetail.aspx" />
     <Content Include="Views\Dashboard\RequestPost\RequestDetail.aspx" />
     <Content Include="Views\Dashboard\Report\ReportList.aspx" />
     <Content Include="Views\Dashboard\RequestPost\RequestPost.aspx" />
@@ -452,6 +453,13 @@
     </Compile>
     <Compile Include="Views\Dashboard\Report\ReportCreate.aspx.designer.cs">
       <DependentUpon>ReportCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dashboard\Report\ReportDetail.aspx.cs">
+      <DependentUpon>ReportDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Dashboard\Report\ReportDetail.aspx.designer.cs">
+      <DependentUpon>ReportDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Dashboard\RequestPost\RequestDetail.aspx.cs">
       <DependentUpon>RequestDetail.aspx</DependentUpon>

@@ -9,7 +9,6 @@ using System.Net;
 using System.Web;
 using Microsoft.VisualBasic.Devices;
 using MOON.Services.User;
-using System.Security.Policy;
 
 namespace MOON.Web.Views.Dashboard.RequestPost
 {
@@ -19,7 +18,7 @@ namespace MOON.Web.Views.Dashboard.RequestPost
         {
             if (!IsPostBack)
             {
-                if (Session.Count != 0)
+                if (Session.Count != 0 && Session["Users"] != null)
                 {
                     UserService userService = new UserService();
                     string[] user = (string[])Session["Users"];

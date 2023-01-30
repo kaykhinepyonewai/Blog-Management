@@ -52,6 +52,95 @@ input {
 .card {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
+/*Loader
+----------------------------------------*/
+.loader {
+    position: fixed;
+    z-index: 599999;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+}
+
+    .loader:before, .loader:after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        -webkit-animation-duration: 1.8s;
+        animation-duration: 1.8s;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in-out;
+        filter: drop-shadow(0 0 0.7555555556rem rgba(255, 255, 255, 0.75));
+    }
+
+    .loader:before {
+        width: 10%;
+        padding-bottom: 10%;
+        box-shadow: inset 0 0 0 1.7rem #fff;
+        -webkit-animation-name: pulsA;
+        animation-name: pulsA;
+    }
+
+    .loader:after {
+        width: calc(10% - 1rem*2);
+        padding-bottom: calc(10% - 1rem*2);
+        box-shadow: 0 0 0 0 #fff;
+        -webkit-animation-name: pulsB;
+        animation-name: pulsB;
+    }
+
+@-webkit-keyframes pulsA {
+    0% {
+        box-shadow: inset 0 0 0 1rem #fff;
+        opacity: 1;
+    }
+
+    50%, 100% {
+        box-shadow: inset 0 0 0 0 #fff;
+        opacity: 0;
+    }
+}
+
+@keyframes pulsA {
+    0% {
+        box-shadow: inset 0 0 0 1rem #fff;
+        opacity: 1;
+    }
+
+    50%, 100% {
+        box-shadow: inset 0 0 0 0 #fff;
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes pulsB {
+    0%, 50% {
+        box-shadow: 0 0 0 0 #fff;
+        opacity: 0;
+    }
+
+    100% {
+        box-shadow: 0 0 0 1rem #fff;
+        opacity: 1;
+    }
+}
+
+@keyframes pulsB {
+    0%, 50% {
+        box-shadow: 0 0 0 0 #fff;
+        opacity: 0;
+    }
+
+    100% {
+        box-shadow: 0 0 0 1rem #fff;
+        opacity: 1;
+    }
+}
 
 /* Sign Up
 ----------------------------------------*/
@@ -709,10 +798,10 @@ aside .nav-close {
     scrollbar-width: none;
 }
 
-.category-side-blk::-webkit-scrollbar,
-.side-wrapper::-webkit-scrollbar {
-    display: none;
-}
+    .category-side-blk::-webkit-scrollbar,
+    .side-wrapper::-webkit-scrollbar {
+        display: none;
+    }
 
 .category-blk,
 .related-blk {
@@ -786,13 +875,20 @@ aside .nav-close {
 /* Main blk
 ----------------------------------------*/
 .main-blk {
-    padding-left: 25px;
+    padding-right: 25px;
     overflow: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-.main-blk::-webkit-scrollbar {
+.hide-scroll {
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.main-blk::-webkit-scrollbar,
+.hide-scroll::-webkit-scrollbar {
     display: none;
 }
 
@@ -1139,7 +1235,6 @@ aside .nav-close {
 
 .comment-item {
     list-style: none;
-    padding-bottom: 20px;
 }
 
 .comment-lists .comment-item .user-item-group {
@@ -1251,6 +1346,18 @@ aside .nav-close {
         width: 100%;
         padding: 0 4.688vw;
         max-width: 100%;
+    }
+    /*Loader
+    --------------------------------------*/
+    .loader:before {
+        width: 15%;
+        padding-bottom: 15%;
+        box-shadow: inset 0 0 0 1.7rem #fff;
+    }
+
+    .loader:after {
+        width: calc(15% - 1rem*2);
+        padding-bottom: calc(15% - 1rem*2);
     }
 
     /* Sign Up
@@ -1533,7 +1640,7 @@ aside .nav-close {
 
     .sidebar-link-text {
         margin-left: 1.844vw;
-        font-size: 2.083vw;
+        font-size: 1.657vw;
     }
 
     /* Category blk
@@ -1569,7 +1676,7 @@ aside .nav-close {
     }
 
     .related-img {
-        width: 10.417vw;
+        width: 8.417vw;
         height: 10.417vw;
         border-radius: 0.651vw;
     }
@@ -1590,7 +1697,7 @@ aside .nav-close {
     /* Main blk
 ----------------------------------------*/
     .main-blk {
-        padding-left: 3.255vw;
+        padding-right: 3.255vw;
     }
 
     .card-body {
@@ -1740,7 +1847,7 @@ aside .nav-close {
     /*Comment aside
 -------------------------------*/
 
-        .comment-asidenav {
+    .comment-asidenav {
         right: -65.104vw;
         width: 45.573vw;
         height: 100vh;
@@ -1815,15 +1922,10 @@ aside .nav-close {
             display: none;
         }
 
-    .comment-item {
-        list-style: none;
-        padding-bottom: 2.604vw;
+    .comment-item .user-item-group img {
+        width: 5.859vw;
+        height: 5.859vw;
     }
-
-        .comment-item .user-item-group img {
-            width: 5.859vw;
-            height: 5.859vw;
-        }
 
     .user-item-group .user-name {
         padding-left: 1.693vw;
@@ -1924,6 +2026,23 @@ aside .nav-close {
 
     .main {
         display: block;
+    }
+    /*Loader
+-----------------------------------------*/
+    .loader:before {
+        width: 25%;
+        padding-bottom: 25%;
+        box-shadow: inset 0 0 0 1.7rem #fff;
+        -webkit-animation-name: pulsA;
+        animation-name: pulsA;
+    }
+
+    .loader:after {
+        width: calc(25% - 1rem*2);
+        padding-bottom: calc(25% - 1rem*2);
+        box-shadow: 0 0 0 0 #fff;
+        -webkit-animation-name: pulsB;
+        animation-name: pulsB;
     }
 
     /* Sign Up
@@ -2277,7 +2396,7 @@ aside .nav-close {
 
     .main-blk {
         margin-top: 0vw;
-        padding-left: 0;
+        padding-right: 0;
     }
 
     /* Category blk
@@ -2546,14 +2665,11 @@ aside .nav-close {
         border-radius: 1.563vw;
     }
 
-    .comment-item {
-        padding-bottom: 3.125vw;
-    }
 
-        .comment-item .user-item-group img {
-            width: 7.031vw;
-            height: 7.031vw;
-        }
+    .comment-item .user-item-group img {
+        width: 7.031vw;
+        height: 7.031vw;
+    }
 
     .user-item-group .user-name p {
         font-size: 2.344vw;

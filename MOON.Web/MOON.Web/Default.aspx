@@ -4,13 +4,13 @@
     <section class="content-blk">
         <div class="container-fluid container-lg">
             <div class="d-flex flex-column flex-md-row flex-lg-row">
-                <div class="col-12 col-md-9 col-lg-9 overflow-scroll vh-100 main-blk">
+                <div class="col-12 col-md-8 col-lg-9 overflow-scroll vh-100 main-blk">
                     <div class="container">
                         <div class="row justify-content-evenly algin article-list">
                             <asp:Repeater ID="reptrArticles" runat="server" OnItemCommand="ReptrCardDataItemCommand" OnItemDataBound="ReptrCardItemDataBound">
                                 <ItemTemplate>
                                     <asp:Label ID="lblArticleSlug" Visible="false" runat="server" Text='<%# Eval("Slug") %>'></asp:Label>
-                                    <div class="col-12 col-md-5 col-lg-5 card article-item p-0">
+                                    <div class="col-12 col-md-12 col-lg-5 card article-item p-0">
                                         <asp:LinkButton ID="lnkBtnCard" runat="server" CommandName="Slug" CommandArgument='<%# Eval("Slug") %>'>
                                         <img src="<%# Eval("Thumbnail")%>"  alt="Thumbnail photo">
                                         <div class="card-body">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-3 col-lg-3 overflow-scroll category-side-blk border-3">
+                <div class="col-12 col-md-4 col-lg-3 overflow-scroll category-side-blk border-3">
                     <div class="category-blk">
                         <h3 class="comm-side-hdr">Categories</h3>
                         <span class="divider"></span>

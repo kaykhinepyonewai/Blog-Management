@@ -11,14 +11,16 @@ namespace MOON.Web.Views.Dashboard.User
         {
             if (!IsPostBack)
             {
-                if (Session.Count != 0 && Session["Users"] != null)
+                if (Session.Count != 0 && Session["Users"] != null && Request.QueryString["email"] != null)
                 {
                     UserService userService = new UserService();
+                    string email = Request.QueryString["email"];
+                    DataTable dt = userService.GetSpecific(email.ToString(), "Email");
                     string[] user = (string[])Session["Users"];
-                    DataTable dt = userService.GetId(Convert.ToInt32(user[0]));
+                    DataTable userdt = userService.GetId(Convert.ToInt32(user[0]));
 
-                    if (Request.QueryString["email"] != null && Request.QueryString["email"].ToString() == dt.Rows[0]["Email"].ToString()
-                        && Convert.ToInt32(dt.Rows[0]["RoleId"]) != 3 || Convert.ToInt32(dt.Rows[0]["RoleId"]) == 1)
+                    if (Request.QueryString["email"] != null && Request.QueryString["email"].ToString() == userdt.Rows[0]["Email"].ToString()
+                        && Convert.ToInt32(dt.Rows[0]["RoleId"]) != 3 || Convert.ToInt32(userdt.Rows[0]["RoleId"]) == 1)
                     {
                         hdnUsername.Value = dt.Rows[0]["Username"].ToString();
                         txtEmail.Text = dt.Rows[0]["email"].ToString();

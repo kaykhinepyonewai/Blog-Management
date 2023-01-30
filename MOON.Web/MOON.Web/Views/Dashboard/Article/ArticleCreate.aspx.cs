@@ -354,13 +354,11 @@ namespace MOON.Web.Views.Dashboard
         public ArticleEntity CreateData()
         {
             ArticleEntity articleEntity = new ArticleEntity();
-
-
+            ArticleService articleservice = new ArticleService();
             if (FileUploadThum.HasFile)
             {
                 string extension = Path.GetExtension(FileUploadThum.FileName);
                 if (extension == ".jpg" || extension == ".png" || extension == ".jpeg")
-
                 {
 
                     Random random = new Random();
@@ -368,6 +366,25 @@ namespace MOON.Web.Views.Dashboard
                     string newFileName = "img_" + Path.GetFileNameWithoutExtension(FileUploadThum.FileName.Replace("-", "").ToLower().Trim()) + "_" + randomNumber.ToString() + Path.GetExtension(FileUploadThum.FileName);
                     string filename = Path.GetFileName(newFileName);
 
+                    try
+                    {
+                        if (Request.QueryString["id"] != null)
+                        {
+                            DataTable dt = articleservice.CheckArticle(Convert.ToInt32(Request.QueryString["id"].ToString()),"ArticleId");
+                            string checkpath = Server.MapPath(dt.Rows[0]["Thumbnail"].ToString());
+                            string filepath = Path.GetFullPath(checkpath);
+                            if (File.Exists(filepath))
+                            {
+                                //only delete a photo file, if a profile file is not a Guest.png
+                                File.Delete(filepath);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        string message = ex.Message;
+                    }
+                    
 
                     FileUploadThum.PostedFile.SaveAs(Server.MapPath("../../../Upload/" + filename));
                     string Image = "../../../Upload/" + filename.ToString();
@@ -430,6 +447,5 @@ namespace MOON.Web.Views.Dashboard
 
             return articleEntity;
         }
-
     }
 }

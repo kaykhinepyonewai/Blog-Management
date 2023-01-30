@@ -48,63 +48,12 @@ namespace MOON.Web.Views.Dashboard.Report
             this.BindGrid();
         }
 
-        /// <summary>
-        ///Once you delete a report, it will also delete the associated article at the same time.
-        /// </summary>
-        protected void gvRowDeleteing(object sender, EventArgs e)
+        protected void gvReportPostRowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = Convert.ToInt32(hdnValueId.Value.ToString());
-            ArticleService articleService = new ArticleService();
-            PhotoService photoService = new PhotoService();
-            CommentService commentService = new CommentService();
-            LikeService likeService = new LikeService();
-
-            DataTable dt = articleService.GetSpecificArchieve(id);
-            string thumbnail = dt.Rows[0]["Thumbnail"].ToString();
-            string checkpath = Server.MapPath(thumbnail);
-            string filepath = Path.GetFullPath(checkpath);
-            if (thumbnail != null)
+            if (e.CommandName == "Detail")
             {
-                try
-                {
-                    File.Delete(filepath);
-                }
-                catch (Exception ex)
-                {
-                    string messsage = ex.Message.ToString();
-                }
+                Response.Redirect("~/Views/Dashboard/Report/ReportDetail.aspx?id=" + e.CommandArgument);
             }
-
-            List<PhotoEntity> photos = photoService.GetAllImage(id);
-            if (photos.Count > 0)
-            {
-                foreach (var photo in photos)
-                {
-                    string img = photo.PhotoImage.ToString();
-                    string checkpathimg = Server.MapPath(img);
-                    string filepathimg = Path.GetFullPath(checkpathimg);
-                    if (img != null)
-                    {
-                        try
-                        {
-                            File.Delete(filepathimg);
-                        }
-                        catch (Exception ex)
-                        {
-                            string messsage = ex.Message.ToString();
-                        }
-                    }
-                }
-            }
-            bool commentsuccess = commentService.DeleteSpecificArticle(id);
-            bool likesuccess = likeService.DeleteSpecificArticle(id);
-            bool photosuccess = photoService.ReportPhotosRemove(id);
-            bool success = articleService.ReportRemove(id);
-            if (commentsuccess || likesuccess || photosuccess || success)
-            {
-                BindGrid();
-            }
-           
         }
     }
 }

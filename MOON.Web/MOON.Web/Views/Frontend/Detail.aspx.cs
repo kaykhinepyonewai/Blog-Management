@@ -289,15 +289,14 @@ namespace MOON.Web.Views.Frontend
             }
         }
 
-
-            public int GATPermit()
-            {
+        public int GATPermit()
+        {
             int userid = Convert.ToInt32(Session["UserId"]);
             int countPermit = 0;
             ArticleService articleService = new ArticleService();
             countPermit = articleService.CountPermit((hdSlug.Value), userid);
             return countPermit;
-        }
+       }
 
 
         protected void UnLikeClick(object sender, EventArgs e)

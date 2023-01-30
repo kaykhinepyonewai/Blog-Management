@@ -251,6 +251,10 @@ namespace MOON.Services.Dashboard
             return articleDao.UpdateStatus(articleEntity);
         }
 
+        public bool UpdateReportStatus(ArticleEntity articleEntity)
+        {
+            return articleDao.UpdateReportStatus(articleEntity);
+        }
 
         public bool UpdateStatusReject(ArticleEntity articleEntity)
         {

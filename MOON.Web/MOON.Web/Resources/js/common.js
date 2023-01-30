@@ -1,5 +1,10 @@
 ﻿$(document).ready(function () {
     try {
+        $(window).on("load", function () {
+            $(".loader").fadeOut(500, function () {
+                $(this).hide();
+            })
+        })
         //Trend Slide
         $(".article-slider").slick({
             slidesToShow: 1,
@@ -168,7 +173,7 @@ $("#txtMainSearch").on("change", function (e) {
     console.log(e);
 })
 
-window.delHandle = function (x,y=null) {
+window.delHandle = function (x, y = null) {
     swal({
         title: "Are you sure?",
         text: "Once deleted, you will not be able to recover this data!",
@@ -208,9 +213,17 @@ window.btnReject = function (e) {
                     icon: "success",
                 });
                 $("[id*=btnRejectHandler]").click();
-                setTimeout(() => {
-                    Toast();
-                }, 2100)
+                let inputName = $("[id*=btnReject]").val();
+               
+                if (inputName === "Reject") {
+                    setTimeout(() => {
+                        Toast();
+                    }, 2100)
+                } else {
+                    setTimeout(() => {
+                        console.log("Current article report has been completely removed")
+                    },1800)
+                }
             } else {
                 swal("Your data is safe!");
             }

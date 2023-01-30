@@ -25,7 +25,7 @@
                     </div>
                     <div class="table-wrapper overflow-scroll">
                         <asp:HiddenField ID="hdnValueId" Value="" runat="server" />
-                         <asp:GridView ID="gvReports" runat="server" CssClass="table table-bordered mt-3" AutoGenerateColumns="false"   AllowPaging="true"
+                         <asp:GridView ID="gvReports" runat="server" CssClass="table table-bordered mt-3" AutoGenerateColumns="false" OnRowCommand="gvReportPostRowCommand"   AllowPaging="true"
                             OnPageIndexChanging="OnPageIndexChanging" PageSize="8">
                             <Columns>
                                 <asp:TemplateField HeaderText="No">
@@ -57,9 +57,9 @@
                                 <asp:TemplateField HeaderText="Actions">
                                     <ItemTemplate>
                                         <div class="text-nowrap">
-                                        <asp:Button ID="btnDeleteHandler" CssClass="btn  btn-outline-danger d-none" runat="server" OnClick="gvRowDeleteing" Text="Delete" />
-                                        <asp:Button ID="btnDelete" UseSubmitBehavior="false" CssClass="btn btn-danger btn-sm" CommandName="Delete" OnClientClick='<%# "return delHandle("+ Eval("ArticleId") + ");" %>'  runat="server" Text="Delete" />                                          
-                                        </div>
+                                        <asp:LinkButton ID="lnkbtnDetail" runat="server" CssClass="btn btn-warning btn-sm" CommandName="Detail" CommandArgument='<%# Eval("ArticleId") %>'>
+                                            Detail
+                                        </asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

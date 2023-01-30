@@ -78,6 +78,12 @@ namespace MOON.Entities.Dashboard
         public string UserName { get; set; }
 
         /// <summary>
+        /// Gets or sets the Email.
+        /// </summary>
+
+        public string Email { get; set; }
+
+        /// <summary>
         /// Gets or sets the CategoryName.
         /// </summary>
         public string CategoryName { get; set; }
@@ -116,6 +122,7 @@ namespace MOON.Entities.Dashboard
             this.Excerpt = string.Empty;
             this.Thumbnail = string.Empty;
             this.UserName = string.Empty;
+            this.Email = string.Empty;
             this.CategoryName = string.Empty;
             this.Status = string.Empty;
             this.CreatedAt = DateTime.Now;

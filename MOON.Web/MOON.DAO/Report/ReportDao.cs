@@ -14,7 +14,7 @@ namespace MOON.DAO.Report
 
         public DataTable GetAll()
         {
-            strSql = "SELECT * FROM Reports";
+            strSql = "Select * from Reports Where ReportId !=1008";
 
             return connection.ExecuteDataTable(CommandType.Text, strSql);
         }

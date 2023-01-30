@@ -325,6 +325,22 @@ namespace MOON.DAO.Dashboard
             return success;
         }
 
+        public bool UpdateReportStatus(ArticleEntity articleEntity)
+        {
+            strSql = "UPDATE Articles SET ReportStatus=@ReportStatus, ReportId=@ReportId, ReportAt=@ReportAt WHERE ArticleId=@ArticleId";
+            SqlParameter[] sqlPara =
+            {
+
+                new SqlParameter("@ReportStatus",articleEntity.ReportStatus),
+                new SqlParameter("@ReportId",articleEntity.ReportId),
+                new SqlParameter("@ReportAt",articleEntity.ReportAt),
+                new SqlParameter("@ArticleId",articleEntity.ArticleId),
+            };
+
+            bool success = connection.ExecuteNonQuery(CommandType.Text, strSql, sqlPara);
+            return success;
+        }
+
         /// <summary>
         /// Update Article Status Reject
         /// </summary>

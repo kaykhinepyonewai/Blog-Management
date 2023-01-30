@@ -6,7 +6,7 @@
     <section class="content-blk">
         <div class="container-fluid container-lg">
             <div class="d-flex flex-column-reverse flex-md-row flex-lg-row">
-                <div class="col-12 col-md-4 col-lg-4 vh-100 overflow-scroll side-wrapper border-3">
+                <div class="col-12 col-md-4 col-lg-4 vh-100 overflow-scroll main-blk side-wrapper border-3">
                     <div class="category-blk">
                         <h3 class="comm-side-hdr ">Categories</h3>
                         <span class="divider"></span>
@@ -53,22 +53,14 @@
                     <!-- /.related-blk -->
                 </div>
                 <asp:HiddenField ID="hdSlug" runat="server" />
-                <div class="col-12 col-md-8 col-lg-8 vh-100 overflow-scroll main-blk">
+                <div class="col-12 col-md-8 col-lg-8 vh-100 overflow-scroll hide-scroll">
                     <div class="alert alert-success" visible="false" id="reportAlert" runat="server" role="alert">
                        You have successfully reported this atitcle!.
                     </div>
                     <div class="article-detail">
-                        <div class="article-slider slider">
-                            <%foreach (var objImg in GTImage())
-                                {  %>
-                            <img src="<%=objImg.PhotoImage %>" class="slide-img" alt="#">
-
-                            <%} %>
-                        </div>
-                        <!-- /.article-slider -->
                         <div class="article-wrapper">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="article-user d-flex justify-content-between align-items-center">
+                                <div class="article-user pb-1 d-flex justify-content-between align-items-center">
                                     <%foreach (var obj in GATDetailBySlug())
                                         {  %>
                                     <img src="<%= ResolveUrl(obj.Profile) %>" class="profile-img" alt="Profile image">
@@ -89,12 +81,14 @@
 
                                         <%if (GATPermit() > 0 || GetRoleId() == 1)
                                             {  %>
-                                        <li><a class="dropdown-item" href='<%= ResolveUrl("~/Views/Dashboard/User/UserProfile.aspx?username="+obj.UserName) %>'>Profile</a></li>
+                                        <li><a class="dropdown-item" href='<%= ResolveUrl("~/Views/Dashboard/User/UserProfile.aspx?email="+obj.Email) %>'>Profile</a></li>
                                         <li><a class="dropdown-item" href="<%= ResolveUrl("~/Views/Dashboard/Article/ArticleCreate.aspx?id="+ obj.ArticleId) %>">Edit</a></li>
                                         <li>
                                             <asp:LinkButton ID="lnkDelete" CssClass="dropdown-item" runat="server" OnClick="btnlnkDeleteClick">Delete</asp:LinkButton>
                                         </li>
                                         <%} %>
+                                        <%if(GATPermit() == 0)
+                                        {  %>
                                         <li class="dropdown-item">
                                             <div class="btn-group">
                                                 <button class="border-0 bg-transparent report-btn p-0" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
@@ -112,10 +106,19 @@
                                                 </ul>
                                             </div>
                                         </li>
+                                    <%} %>
                                     </ul>
                                 </div>
                                 <%} %>
                             </div>
+                            <div class="article-slider slider">
+                            <%foreach (var objImg in GTImage())
+                                {  %>
+                            <img src="<%=objImg.PhotoImage %>" class="slide-img" alt="#">
+
+                            <%} %>
+                        </div>
+                        <!-- /.article-slider -->
                             <div class="article-info">
                                 <h3 class="article-hdr"><%=obj.Title %></h3>
                                 <p class="article-describe">

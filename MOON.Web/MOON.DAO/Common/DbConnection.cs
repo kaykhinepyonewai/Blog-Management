@@ -447,9 +447,10 @@ namespace MOON.DAO.Common
                         Thumbnail = rdr["Thumbnail"].ToString(),
                         Profile = rdr["Profile"].ToString(),
                         UserName = rdr["Username"].ToString(),
+                        Email = rdr["Email"].ToString(),
                         Status = rdr["Status"].ToString(),
-                        CategoryName = rdr["Name"].ToString(),
-                    }); ;
+                        CategoryName = rdr["Name"].ToString(), 
+                    });
                 }
                 rdr.Close();
                 sqlConn.Close();
