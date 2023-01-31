@@ -37,6 +37,10 @@
                                     </div>
                                 </FooterTemplate>
                             </asp:Repeater>
+                            <div class="d-flex align-items-center justify-content-center">
+                             <asp:Button ID="btnPrev" runat="server" CssClass="btn btn-outline-secondary me-2" Text="Previous" OnClick="btnPrevClick" />
+                            <asp:Button ID="btnNext" runat="server" CssClass="btn btn-outline-secondary" Text="Next" OnClick="btnNextClick" />
+                            </div>
                         </div>
                     </div>
                 </div>

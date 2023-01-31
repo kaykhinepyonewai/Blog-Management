@@ -36,13 +36,13 @@
 .table-wrapper tr th,
 .table-img-wrapper tr th{
     text-align: center;
+    width: 5%;
 }
 
 .table-wrapper tr td {
     font-size: 18px;
     vertical-align: middle;
     text-align: center;
-    width: 5%
 }
 
 .table-img-wrapper tr td {

@@ -22,8 +22,15 @@ namespace MOON.Web.Views.Dashboard.User
                     if (Request.QueryString["email"] != null && Request.QueryString["email"].ToString() == userdt.Rows[0]["Email"].ToString()
                         && Convert.ToInt32(dt.Rows[0]["RoleId"]) != 3 || Convert.ToInt32(userdt.Rows[0]["RoleId"]) == 1)
                     {
-                        hdnUsername.Value = dt.Rows[0]["Username"].ToString();
-                        txtEmail.Text = dt.Rows[0]["email"].ToString();
+                        if (dt.Rows.Count > 0)
+                        {
+                            hdnUsername.Value = dt.Rows[0]["Username"].ToString();
+                            txtEmail.Text = dt.Rows[0]["email"].ToString();
+                        }
+                        else
+                        {
+                            Response.Write("<script>history.go(-1)</script>");
+                        }
                     }
                     else
                     {
@@ -33,6 +40,7 @@ namespace MOON.Web.Views.Dashboard.User
                 }
             }
         }
+
 
         protected void btnChangePasswordClick(object sender, EventArgs e)
         {

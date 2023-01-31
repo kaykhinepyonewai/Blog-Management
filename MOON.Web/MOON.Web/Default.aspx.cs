@@ -11,6 +11,8 @@ namespace MOON.Web
 {
     public partial class _Default : Page
     {
+        private int pageSize = 6;
+        private int pageIndex = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -30,29 +32,86 @@ namespace MOON.Web
             {
 
                 DataTable dt = articleService.ArticleFilterByCategory(Request.QueryString["category"].ToString());
-                reptrArticles.DataSource = dt;
-                reptrArticles.DataBind();
+                BindRepeater(dt);
             }
             else if (Request.QueryString["keyword"] != null)
             {
                 DataTable dt = articleService.ArticleFilterBySearch(Request.QueryString["keyword"].ToString());
-                reptrArticles.DataSource = dt;
-                reptrArticles.DataBind();
+                BindRepeater(dt);
 
             }
             else if (Request.QueryString["keyword"] != null && Request.QueryString["category"] != null)
             {
                 DataTable dt = articleService.ArticleFilterByBoth(Request.QueryString["keyword"].ToString(), Request.QueryString["category"].ToString());
-                reptrArticles.DataSource = dt;
-                reptrArticles.DataBind();
+                BindRepeater(dt);
             }
             else
             {
                 DataTable dt = articleService.ShowCard();
-                reptrArticles.DataSource = dt;
-                reptrArticles.DataBind();
+                BindRepeater(dt);
             }
         }
+
+        private void BindRepeater(DataTable dt)
+        {
+            int recordCount = dt.Rows.Count;
+            int pageCount = recordCount / pageSize;
+            if (recordCount % pageSize > 0)
+            {
+                pageCount += 1;
+            }
+
+            DataTable dtPage = dt.Clone();
+            int startIndex = pageIndex * pageSize;
+            int endIndex = startIndex + pageSize;
+            if (endIndex > recordCount)
+            {
+                endIndex = recordCount;
+            }
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                dtPage.ImportRow(dt.Rows[i]);
+            }
+
+            if(!(recordCount >= pageSize))
+            {
+                btnNext.Visible = false;
+                btnPrev.Visible = false;
+            }
+
+            reptrArticles.DataSource = dtPage;
+            reptrArticles.DataBind();
+        }
+
+        protected void btnPrevClick(object sender, EventArgs e)
+        {
+            pageIndex--;
+            if (pageIndex < 0)
+            {
+                pageIndex = 0;
+            }
+            BindArticle();
+        }
+
+        protected void btnNextClick(object sender, EventArgs e)
+        {
+            ArticleService articleService = new ArticleService();
+            DataTable dt = articleService.ShowCard();
+            int recordCount = dt.Rows.Count;
+            int pageCount = recordCount / pageSize;
+            if (recordCount % pageSize > 0)
+            {
+                pageCount += 1;
+            }
+
+            pageIndex++;
+            if (pageIndex >= pageCount)
+            {
+                pageIndex = pageCount - 1;
+            }
+            BindArticle();
+        }
+
 
         /// <summary>
         /// To filter as category items and display at index page.

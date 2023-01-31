@@ -18,7 +18,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <div class="card w-100 vh-100 border-0">
+            <div class="card w-100 border-0">
                 <div class="card-body">
                     <div class="clearfix table-create">
                         <p class="float-start mb-0 table-title">All Users</p>

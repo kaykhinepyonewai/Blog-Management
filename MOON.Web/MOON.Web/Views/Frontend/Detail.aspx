@@ -53,21 +53,21 @@
                     <!-- /.related-blk -->
                 </div>
                 <asp:HiddenField ID="hdSlug" runat="server" />
-                <div class="col-12 col-md-8 col-lg-8 vh-100 overflow-scroll hide-scroll">
+                <div class="col-12 col-md-8 col-lg-8">
                     <div class="alert alert-success" visible="false" id="reportAlert" runat="server" role="alert">
                        You have successfully reported this atitcle!.
                     </div>
                     <div class="article-detail">
                         <div class="article-wrapper">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="article-user pb-1 d-flex justify-content-between align-items-center">
+                                <div class="article-user pb-3 d-flex justify-content-between align-items-center">
                                     <%foreach (var obj in GATDetailBySlug())
                                         {  %>
                                     <img src="<%= ResolveUrl(obj.Profile) %>" class="profile-img" alt="Profile image">
                                     <div class="article-user-info">
                                         <h4 class="article-username"><%=obj.UserName %></h4>
-                                        <a href="#" class="article-category text-decoration-none"><%=obj.CategoryName %></a>
-                                        <span class="created-at"><%=obj.CreatedAt.ToString("MMM dd , yyyy") %></span>
+                                        <a href="<%= ResolveUrl("~/Default.aspx?category="+obj.Slug) %>" class="article-category fw-bold text-decoration-none"><%=obj.CategoryName %></a>
+                                        <span class="created-at fw-bold"><%=obj.CreatedAt.ToString("MMM dd , yyyy") %></span>
                                     </div>
                                 </div>
                                 <%if (Convert.ToInt32(Session["UserId"]) != 0)

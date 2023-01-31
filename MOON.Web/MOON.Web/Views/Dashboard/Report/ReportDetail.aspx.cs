@@ -132,7 +132,7 @@ namespace MOON.Web.Views.Dashboard.Report
 
             articleEntity.ArticleId = Convert.ToInt32(hdArticleId.Value);
             articleEntity.ReportStatus = 0;
-            articleEntity.ReportId = 1008;
+            articleEntity.ReportId = 12;
             articleEntity.ReportAt = DateTime.Now;
 
             return articleEntity;

@@ -27,7 +27,6 @@
                     <asp:Label ID="lblTitle" runat="server" Text="" Visible="false" Value="" ForeColor="Red"></asp:Label>
                     <asp:RequiredFieldValidator ID="revTitle" runat="server" ValidationGroup="validGp" ControlToValidate="txtTitle" ErrorMessage="Category name field is required." ForeColor="#FF3300"></asp:RequiredFieldValidator>
                 </div>
-
                 <div class="form-group">
                     <label class="form-label" for="<%= txtSlug.ClientID %>">Slug <span class="text-danger">*</span></label>
                     <asp:TextBox ID="txtSlug" class="form-control" runat="server"></asp:TextBox>
@@ -38,7 +37,6 @@
                     <asp:Button ID="btnSave" CssClass="btn btn-primary text-white" runat="server" Text="Save" OnClick="btnSaveClick" ValidationGroup="validGp" />
                     <asp:Button ID="btnCancel" CssClass="btn btn-outline-secondary ms-1" runat="server" Text="Cancel" OnClick="btnCancelClick" />
                 </div>
-
             </div>
         </div>
     </div>
